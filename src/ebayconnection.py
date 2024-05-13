@@ -1,20 +1,27 @@
 import http.client
-import ssl
+import json
 
-conn = http.client.HTTPSConnection("mercari.p.rapidapi.com")
+conn = http.client.HTTPSConnection("api.ebay.com")
 
 headers = {
-    'X-RapidAPI-Key': "ae05a0b63bmshbb444aea6ce3e9ep1f04f8jsn02e341027dff",
-    'X-RapidAPI-Host': "mercari.p.rapidapi.com",
     'Authorization': 'Bearer v^1.1#i^1#p^1#f^0#I^3#r^0#t^H4sIAAAAAAAAAOVYfWwTZRhftw4cDDCAigPJvCkaRq/vXT/vWItdV1wF2kILgQWBt3fvrTeud7e797YVv+b40D8wYtSRiIZFTTRqNCZM4z8SlqiLH2iiBgmRBGKUIIlIVFCCeteV0U0CyJrYxP7T3PM+7/P+fr/3ed7nvQO9k2oW7mjdcXaabXLlQC/orbTZqKmgZlJ14/SqyrrqClDkYBvovaPX3ld1okmHWUllVyFdVWQd1fdkJVln88YAYWgyq0Bd1FkZZpHOYo5NhlYsZ2kSsKqmYIVTJKI+2hIgfIjhGYZJ88DlowWGMq3yxZgpJUAwbppOA0aAaS8t+Hx+c1zXDRSVdQxlHCBoQLsdwOOgXCmaZikv66FIN+1uI+rXIE0XFdl0IQERzMNl83O1IqxXhgp1HWnYDEIEo6GlyXgo2hKJpZqcRbGCBR2SGGJDH/sUVnhUvwZKBrryMnrem00aHId0nXAGR1YYG5QNXQRzHfDzUqc9Au/3uiFkAM/xAl0SKZcqWhbiK+OwLCLvEPKuLJKxiHNXU9RUI92BOFx4ipkhoi311t9KA0qiICItQESaQ+tCiQQRTEIuI8pJwxFfnVoWTSUdiVUtDgA54HF7KZ+DpgUPIyBYWGckWEHlcQuFFZkXLc30+piCm5EJGo2XBhRJYzrF5bgWErAFaNTPnQLgooQU02bt6cgmGjgjW9uKsqYO9fnHq2/A6GyMNTFtYDQaYfxAXqEAAVVV5Inxg/lULGRPjx4gMhirrNPZ3d1NdrtIRWt30gBQzrUrlie5DMpCwvK1aj3vL159gkPMU+GQOVMXWZxTTSw9ZqqaAOR2IuhmXG6GKug+FlZwvPUfhiLOzrEFUaoCoTw0ZGjK56Jpxufn+VIUSLCQo04LB0rDnCMLtc0IqxLkkIMz88zIIk3kWZdHoF1+ATl4LyM43IwgONIe3uugBIQAQuk0x/j/R3VyrZmeRJyGcGlSvVRpnmru8dPRLmCsjIXj4UZpldnaulfTLdl7qWSkMdqoLl8mxp0dcbR0XeBai+Gy5MOSaCqTMtcvv1pvVXSM+AnRS3KKihKKJHK58tpgl8YnoIZzSSRJpmFCJEOqGi3RUV0qev/ulLg+2iXsUP9Nd7osK93K2PJiZc3XzQBQFUmr/5CcknUq0LBqHWcs88Y86gnxFs1ra1mxNkmOsBX5kfsmaVLGGVLv4kgN6YqhmVdtMm7dv1LKZiSb7QxriiQhbc3EMsAq52zWwDAtoXKr6xIkuAjLrNdSPsrjdfm91MR4cflOurHcjqQSncT28HXcqZ1jX/CDFfkf1WcbAn229yttNtAE7qQawO2Tqlbbq2rrdBEjUoQCqYvtsvneqiFyM8qpUNQqZ1WcefHZ1nBdJN6/8IFU7os9H1XUFn1fGLgfzBn9wlBTRU0t+twA5l0aqaZm3DKNdgMPZd7QKa+HagMNl0bt1M322bu/Pd62M4LPv73k7rapB5fsdw8+woJpo042W3WFvc9WEftkyq/vulPD3EuLurxzthwb3jCrNZfadOO8N/o7obbPc2DxV+efF04Z59TB7eu/fq1puxSbP/1nPnghcHwodtuxuWvPPnzS9tc3J3fRcxZsJXb8GTty0+Hh06jp1eMnXzAWzz66aeC3XQ8+tusHNXKo57sM/ebRwOC+xP49H384uevIkoVb9844HfnpD9czT3fMPeP67NDBmZ2JvedW3KoR33fecKrnyQOPbwnsXjCQ+/KVxTPlxKBv/9D8w8s8VAfxQf+G6h9zzY+euKu27vfdNaeH+ts/XzR8uMErv/6OrTFCPtF8ZkM2sjOyraH/vurOlzfe89aF51z9K7kp/k3bH/qldf2nqadqz861v8eM7OXfjEXMCPkRAAA='
 }
 
-conn.request("GET", "/Mercari/Search?page=1&query=iphone", headers=headers)
+conn.request("GET", "/item_summary/search?page=1&query=nike", headers=headers)
 
 res = conn.getresponse()
 data = res.read()
 
-print(data.decode("utf-8"))
+# Decode the bytes data to a string
+data_str = data.decode("utf-8")
 
+# Specify the file path
+file_path = "../resources/ebaydata.json"
 
+# Open the file in write mode
+with open(file_path, "w") as file:
+    # Write JSON data to the file
+    json.dump(data, file, indent=4)
+
+print("JSON data saved to", file_path)
 
