@@ -1,27 +1,43 @@
 import http.client
 import json
+import requests
 
-conn = http.client.HTTPSConnection("api.ebay.com")
+url = "https://api.ebay.com/buy/browse/v1/item_summary/search?q=nike&limit=10"
 
+payload = {}
 headers = {
-    'Authorization': 'Bearer v^1.1#i^1#p^1#f^0#I^3#r^0#t^H4sIAAAAAAAAAOVYfWwTZRhftw4cDDCAigPJvCkaRq/vXT/vWItdV1wF2kILgQWBt3fvrTeud7e797YVv+b40D8wYtSRiIZFTTRqNCZM4z8SlqiLH2iiBgmRBGKUIIlIVFCCeteV0U0CyJrYxP7T3PM+7/P+fr/3ed7nvQO9k2oW7mjdcXaabXLlQC/orbTZqKmgZlJ14/SqyrrqClDkYBvovaPX3ld1okmHWUllVyFdVWQd1fdkJVln88YAYWgyq0Bd1FkZZpHOYo5NhlYsZ2kSsKqmYIVTJKI+2hIgfIjhGYZJ88DlowWGMq3yxZgpJUAwbppOA0aAaS8t+Hx+c1zXDRSVdQxlHCBoQLsdwOOgXCmaZikv66FIN+1uI+rXIE0XFdl0IQERzMNl83O1IqxXhgp1HWnYDEIEo6GlyXgo2hKJpZqcRbGCBR2SGGJDH/sUVnhUvwZKBrryMnrem00aHId0nXAGR1YYG5QNXQRzHfDzUqc9Au/3uiFkAM/xAl0SKZcqWhbiK+OwLCLvEPKuLJKxiHNXU9RUI92BOFx4ipkhoi311t9KA0qiICItQESaQ+tCiQQRTEIuI8pJwxFfnVoWTSUdiVUtDgA54HF7KZ+DpgUPIyBYWGckWEHlcQuFFZkXLc30+piCm5EJGo2XBhRJYzrF5bgWErAFaNTPnQLgooQU02bt6cgmGjgjW9uKsqYO9fnHq2/A6GyMNTFtYDQaYfxAXqEAAVVV5Inxg/lULGRPjx4gMhirrNPZ3d1NdrtIRWt30gBQzrUrlie5DMpCwvK1aj3vL159gkPMU+GQOVMXWZxTTSw9ZqqaAOR2IuhmXG6GKug+FlZwvPUfhiLOzrEFUaoCoTw0ZGjK56Jpxufn+VIUSLCQo04LB0rDnCMLtc0IqxLkkIMz88zIIk3kWZdHoF1+ATl4LyM43IwgONIe3uugBIQAQuk0x/j/R3VyrZmeRJyGcGlSvVRpnmru8dPRLmCsjIXj4UZpldnaulfTLdl7qWSkMdqoLl8mxp0dcbR0XeBai+Gy5MOSaCqTMtcvv1pvVXSM+AnRS3KKihKKJHK58tpgl8YnoIZzSSRJpmFCJEOqGi3RUV0qev/ulLg+2iXsUP9Nd7osK93K2PJiZc3XzQBQFUmr/5CcknUq0LBqHWcs88Y86gnxFs1ra1mxNkmOsBX5kfsmaVLGGVLv4kgN6YqhmVdtMm7dv1LKZiSb7QxriiQhbc3EMsAq52zWwDAtoXKr6xIkuAjLrNdSPsrjdfm91MR4cflOurHcjqQSncT28HXcqZ1jX/CDFfkf1WcbAn229yttNtAE7qQawO2Tqlbbq2rrdBEjUoQCqYvtsvneqiFyM8qpUNQqZ1WcefHZ1nBdJN6/8IFU7os9H1XUFn1fGLgfzBn9wlBTRU0t+twA5l0aqaZm3DKNdgMPZd7QKa+HagMNl0bt1M322bu/Pd62M4LPv73k7rapB5fsdw8+woJpo042W3WFvc9WEftkyq/vulPD3EuLurxzthwb3jCrNZfadOO8N/o7obbPc2DxV+efF04Z59TB7eu/fq1puxSbP/1nPnghcHwodtuxuWvPPnzS9tc3J3fRcxZsJXb8GTty0+Hh06jp1eMnXzAWzz66aeC3XQ8+tusHNXKo57sM/ebRwOC+xP49H384uevIkoVb9844HfnpD9czT3fMPeP67NDBmZ2JvedW3KoR33fecKrnyQOPbwnsXjCQ+/KVxTPlxKBv/9D8w8s8VAfxQf+G6h9zzY+euKu27vfdNaeH+ts/XzR8uMErv/6OrTFCPtF8ZkM2sjOyraH/vurOlzfe89aF51z9K7kp/k3bH/qldf2nqadqz861v8eM7OXfjEXMCPkRAAA='
+  'Authorization': 'Bearer v^1.1#i^1#p^1#r^0#I^3#f^0#t^H4sIAAAAAAAAAOVYe2wURRi/64tAKVXwUashxxYkcNm72b2913p3yfUBPfu4wl1BiEj2MdsuvdtddmZpLxI5S0SDwYiGEoINSARCNAbU+CKa2GBIJEH5A4iaaIgoSogkGoMYEXe3pVwrAaSX2MT75zLffPPN7/eb75uZHZCvmLpwU/OmS1XOKSW78yBf4nRSlWBqRbl7RmlJbbkDFDg4d+fn5sv6S3+MIC6b0dilEGmqgqCrL5tREGsbo4ShK6zKIRmxCpeFiMUCm4q3tbK0B7CarmJVUDOEK9EYJcQQxcMgJ0g+fyAI+aBpVa7FTKtRgg/xDEMBIPKSJArhkNmPkAETCsKcgqMEDWiGBH6SYtIAsD4fywQ8IR+1knAtgzqSVcV08QAiZsNl7bF6AdabQ+UQgjo2gxCxRHxRKhlPNDa1pyPeglixER1SmMMGGttqUEXoWsZlDHjzaZDtzaYMQYAIEd7Y8Axjg7Lxa2DuAL4tdRjAoJ/iKT4AeTokgKJIuUjVsxy+OQ7LIoukZLuyUMEyzt1KUVMNfg0U8Eir3QyRaHRZf0sMLiNLMtSjRFN9fEW8o4OIpTihW1ZSBpnsTLck0imyY2kjCTgB+JkAFSRpWvKHJciNzDMcbETlcRM1qIooW5ohV7uK66EJGo6Xhi6QxnRKKkk9LmELUKEffU1COrjSWtPhRTRwt2ItK8yaOrjs5q0XYHQ0xrrMGxiORhjfYSsUJThNk0VifKediiPZ04eiRDfGGuv19vb2enp9HlXv8tIAUN7H2lpTQjfMcoTla9W67S/fegAp21QEaI5EMotzmomlz0xVE4DSRcSYsI8JUyO6j4UVG2/9h6GAs3dsQRSrQPggHWZCYVFkOBD2cVIxCiQ2kqNeCwfkuRyZ5fQeiLUMJ0BSMPPMyEJdFlmfX6J9IQmSYiAskUxYkkjeLwZISoIQQMjz5ub3P6qT2830FBR0iIuT6sVK83R9X4hOrAPGkvaGZIM7s9QXpHs76cbsYirV5E64tdYWOeldk4SLVkRvtxhuSL4hI5vKpM35J1+tN6sIQ3FC9FKCqsEONSMLucm1wD5d7OB0nEvBTMY0TIhkXNMSRdqqi0Xv3+0Sd0a7iCfUf3M63ZAVsjJ2crGyxiMzAKfJHuv88Qhq1qtyhlXruNsyr7ZRT4i3bF5bJxVrk+QwW1kcvm96TMq424PWCR4dItXQzau2J2ndv9JqD1TM4wzraiYD9WUTywCrnLNZA3N8Bk62ui5CgsvcJDtrqSDlDzCBEB2YEC/BPklXT7YtqUg7cVnDHdypvWM/8GMO+0f1O4dAv/PjEqcTRMA8qg7MqSjtLCudXotkDD0yJ3mQ3KWY36069PTAnMbJesksxy97tjU31DYlBxY+mc59sfOoY3rB+8LuVaBm9IVhailVWfDcAB663lNOVd9fRTPATzEA+HxMYCWou95bRt1Xds+BvWy120sdrnk71/fOsZqfHY70EKgadXI6yx1l/U5HpLNq3Zw9S57eVtd18tQ0bduOh4fIjZfP7/0r8e3JQxsSy33rj5e/eejsa7MHT/yW2vk85V770ov7B77evuXVeCQ545lpiYvVX66vWrvjaPypWPCBC1sXv/XNqg/PL+g69P7MrUZL+N4z4iOb8/UDwgcLd7wS8b+g7K/E80vOX/xkzq/bNx+csjPfeeHTwbl3z74yvwdVxdoi7VWX93m/Wv7dTHnrrBMnHnTMOxaoOdv2Obdv3uHT6y+fO8cMvOz+vWnGu6f2/dmyR/ro0TObYq18qOPK1Z+OVG85+/2xXbUbn43Pr7v6xHs/sH907bp0oHn16+7+iv2BIwePv7G2fXDDc6fdlbHawbtmD4XQgsc/G15Kx9+6FGG7+REAAA=='
 }
 
-conn.request("GET", "/item_summary/search?page=1&query=nike", headers=headers)
+response = requests.request("GET", url, headers=headers, data=payload)
 
-res = conn.getresponse()
-data = res.read()
+print(response.json())
 
-# Decode the bytes data to a string
-data_str = data.decode("utf-8")
+#
+# conn = http.client.HTTPSConnection("api.ebay.com")
+#
+# headers = {
+#     'Authorization': 'Bearer v^1.1#i^1#p^1#r^0#I^3#f^0#t^H4sIAAAAAAAAAOVYe2wURRi/64tAKVXwUashxxYkcNm72b2913p3yfUBPfu4wl1BiEj2MdsuvdtddmZpLxI5S0SDwYiGEoINSARCNAbU+CKa2GBIJEH5A4iaaIgoSogkGoMYEXe3pVwrAaSX2MT75zLffPPN7/eb75uZHZCvmLpwU/OmS1XOKSW78yBf4nRSlWBqRbl7RmlJbbkDFDg4d+fn5sv6S3+MIC6b0dilEGmqgqCrL5tREGsbo4ShK6zKIRmxCpeFiMUCm4q3tbK0B7CarmJVUDOEK9EYJcQQxcMgJ0g+fyAI+aBpVa7FTKtRgg/xDEMBIPKSJArhkNmPkAETCsKcgqMEDWiGBH6SYtIAsD4fywQ8IR+1knAtgzqSVcV08QAiZsNl7bF6AdabQ+UQgjo2gxCxRHxRKhlPNDa1pyPeglixER1SmMMGGttqUEXoWsZlDHjzaZDtzaYMQYAIEd7Y8Axjg7Lxa2DuAL4tdRjAoJ/iKT4AeTokgKJIuUjVsxy+OQ7LIoukZLuyUMEyzt1KUVMNfg0U8Eir3QyRaHRZf0sMLiNLMtSjRFN9fEW8o4OIpTihW1ZSBpnsTLck0imyY2kjCTgB+JkAFSRpWvKHJciNzDMcbETlcRM1qIooW5ohV7uK66EJGo6Xhi6QxnRKKkk9LmELUKEffU1COrjSWtPhRTRwt2ItK8yaOrjs5q0XYHQ0xrrMGxiORhjfYSsUJThNk0VifKediiPZ04eiRDfGGuv19vb2enp9HlXv8tIAUN7H2lpTQjfMcoTla9W67S/fegAp21QEaI5EMotzmomlz0xVE4DSRcSYsI8JUyO6j4UVG2/9h6GAs3dsQRSrQPggHWZCYVFkOBD2cVIxCiQ2kqNeCwfkuRyZ5fQeiLUMJ0BSMPPMyEJdFlmfX6J9IQmSYiAskUxYkkjeLwZISoIQQMjz5ub3P6qT2830FBR0iIuT6sVK83R9X4hOrAPGkvaGZIM7s9QXpHs76cbsYirV5E64tdYWOeldk4SLVkRvtxhuSL4hI5vKpM35J1+tN6sIQ3FC9FKCqsEONSMLucm1wD5d7OB0nEvBTMY0TIhkXNMSRdqqi0Xv3+0Sd0a7iCfUf3M63ZAVsjJ2crGyxiMzAKfJHuv88Qhq1qtyhlXruNsyr7ZRT4i3bF5bJxVrk+QwW1kcvm96TMq424PWCR4dItXQzau2J2ndv9JqD1TM4wzraiYD9WUTywCrnLNZA3N8Bk62ui5CgsvcJDtrqSDlDzCBEB2YEC/BPklXT7YtqUg7cVnDHdypvWM/8GMO+0f1O4dAv/PjEqcTRMA8qg7MqSjtLCudXotkDD0yJ3mQ3KWY36069PTAnMbJesksxy97tjU31DYlBxY+mc59sfOoY3rB+8LuVaBm9IVhailVWfDcAB663lNOVd9fRTPATzEA+HxMYCWou95bRt1Xds+BvWy120sdrnk71/fOsZqfHY70EKgadXI6yx1l/U5HpLNq3Zw9S57eVtd18tQ0bduOh4fIjZfP7/0r8e3JQxsSy33rj5e/eejsa7MHT/yW2vk85V770ov7B77evuXVeCQ545lpiYvVX66vWrvjaPypWPCBC1sXv/XNqg/PL+g69P7MrUZL+N4z4iOb8/UDwgcLd7wS8b+g7K/E80vOX/xkzq/bNx+csjPfeeHTwbl3z74yvwdVxdoi7VWX93m/Wv7dTHnrrBMnHnTMOxaoOdv2Obdv3uHT6y+fO8cMvOz+vWnGu6f2/dmyR/ro0TObYq18qOPK1Z+OVG85+/2xXbUbn43Pr7v6xHs/sH907bp0oHn16+7+iv2BIwePv7G2fXDDc6fdlbHawbtmD4XQgsc/G15Kx9+6FGG7+REAAA=='
+# }
+#
+# conn.request("GET", "/buy/browse/v1/item_summary/search?q=nike&limit=10", headers=headers)
+#
+# res = conn.getresponse()
+# data = res.read()
+#
+# # Decode the bytes data to a string
+# data_str = data.decode("utf-8")
+# print(data_str)
 
-# Specify the file path
-file_path = "../resources/ebaydata.json"
+if response.status_code == 200:
+    # Extract JSON content from the response
+    json_content = response.json()
 
-# Open the file in write mode
-with open(file_path, "w") as file:
-    # Write JSON data to the file
-    json.dump(data, file, indent=4)
+    # Save the JSON content to a file
+    with open('../resources/ebaydata.json', 'w') as f:
+        json.dump(json_content, f)
 
-print("JSON data saved to", file_path)
+    print("JSON file saved successfully.")
+else:
+    print("Error:", response.status_code)
 

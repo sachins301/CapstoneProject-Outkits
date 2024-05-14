@@ -1,0 +1,857 @@
+{
+  "href": "https://api.ebay.com/buy/browse/v1/item_summary/search?q=nike&limit=10&offset=0",
+  "total": 2671473,
+  "next": "https://api.ebay.com/buy/browse/v1/item_summary/search?q=nike&limit=10&offset=10",
+  "limit": 10,
+  "offset": 0,
+  "itemSummaries": [
+    {
+      "itemId": "v1|314070728868|612734898119",
+      "title": "Nike AIR MONARCH IV Men White Blue 102 Walking Shoe Medium & WIDE WIDTH 4E EEEE",
+      "itemGroupHref": "https://api.ebay.com/buy/browse/v1/item/get_items_by_item_group?item_group_id=314070728868",
+      "leafCategoryIds": [
+        "15709"
+      ],
+      "categories": [
+        {
+          "categoryId": "15709",
+          "categoryName": "Athletic Shoes"
+        },
+        {
+          "categoryId": "11450",
+          "categoryName": "Clothing, Shoes & Accessories"
+        },
+        {
+          "categoryId": "260012",
+          "categoryName": "Men"
+        },
+        {
+          "categoryId": "93427",
+          "categoryName": "Men's Shoes"
+        }
+      ],
+      "image": {
+        "imageUrl": "https://i.ebayimg.com/thumbs/images/g/6bEAAOSw9-hizdmb/s-l225.jpg"
+      },
+      "price": {
+        "value": "59.95",
+        "currency": "USD"
+      },
+      "itemGroupType": "SELLER_DEFINED_VARIATIONS",
+      "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C314070728868%7C612734898119",
+      "seller": {
+        "username": "shoes_bootz_and_more",
+        "feedbackPercentage": "99.1",
+        "feedbackScore": 10235
+      },
+      "condition": "New with box",
+      "conditionId": "1000",
+      "thumbnailImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/images/g/6bEAAOSw9-hizdmb/s-l960.jpg"
+        }
+      ],
+      "shippingOptions": [
+        {
+          "shippingCostType": "FIXED",
+          "shippingCost": {
+            "value": "0.00",
+            "currency": "USD"
+          }
+        }
+      ],
+      "buyingOptions": [
+        "FIXED_PRICE"
+      ],
+      "epid": "10039818044",
+      "itemWebUrl": "https://www.ebay.com/itm/314070728868?hash=item49201300a4:g:6bEAAOSw9-hizdmb",
+      "itemLocation": {
+        "postalCode": "421**",
+        "country": "US"
+      },
+      "additionalImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/fYgAAOSwr91izdmd/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/uccAAOSwp-pizdmh/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/yygAAOSwTwNizdme/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/B1oAAOSwFHdizdms/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/hFsAAOSwvaVizdmu/s-l225.jpg"
+        }
+      ],
+      "adultOnly": false,
+      "legacyItemId": "314070728868",
+      "availableCoupons": false,
+      "itemCreationDate": "2022-07-12T20:40:16.000Z",
+      "topRatedBuyingExperience": false,
+      "priorityListing": false,
+      "listingMarketplaceId": "EBAY_US"
+    },
+    {
+      "itemId": "v1|126374007543|427415012421",
+      "title": "Nike Air Force 1 '07 Black/ White Panda DV0788-001 Fashion Shoes",
+      "itemGroupHref": "https://api.ebay.com/buy/browse/v1/item/get_items_by_item_group?item_group_id=126374007543",
+      "leafCategoryIds": [
+        "15709"
+      ],
+      "categories": [
+        {
+          "categoryId": "15709",
+          "categoryName": "Athletic Shoes"
+        },
+        {
+          "categoryId": "11450",
+          "categoryName": "Clothing, Shoes & Accessories"
+        },
+        {
+          "categoryId": "260012",
+          "categoryName": "Men"
+        },
+        {
+          "categoryId": "93427",
+          "categoryName": "Men's Shoes"
+        }
+      ],
+      "image": {
+        "imageUrl": "https://i.ebayimg.com/thumbs/images/g/8NEAAOSwcDVl8Lt9/s-l225.jpg"
+      },
+      "price": {
+        "value": "83.60",
+        "currency": "USD"
+      },
+      "itemGroupType": "SELLER_DEFINED_VARIATIONS",
+      "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C126374007543%7C427415012421",
+      "seller": {
+        "username": "poofyo101jumpmansneakers",
+        "feedbackPercentage": "99.7",
+        "feedbackScore": 39890
+      },
+      "condition": "New with box",
+      "conditionId": "1000",
+      "thumbnailImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/images/g/8NEAAOSwcDVl8Lt9/s-l640.jpg"
+        }
+      ],
+      "shippingOptions": [
+        {
+          "shippingCostType": "FIXED",
+          "shippingCost": {
+            "value": "0.00",
+            "currency": "USD"
+          },
+          "minEstimatedDeliveryDate": "2024-05-15T07:00:00.000Z",
+          "maxEstimatedDeliveryDate": "2024-05-17T07:00:00.000Z",
+          "guaranteedDelivery": true
+        }
+      ],
+      "buyingOptions": [
+        "FIXED_PRICE"
+      ],
+      "itemWebUrl": "https://www.ebay.com/itm/126374007543?hash=item1d6c7a52f7:g:8NEAAOSwcDVl8Lt9",
+      "itemLocation": {
+        "postalCode": "281**",
+        "country": "US"
+      },
+      "additionalImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/PaMAAOSwCeRl8Lt9/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/vWAAAOSwtetl8Lt9/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/spIAAOSw68dl8Lt9/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/dBsAAOSwwkBl8Lt9/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/tqcAAOSwhNdl8Lt9/s-l225.jpg"
+        }
+      ],
+      "adultOnly": false,
+      "legacyItemId": "126374007543",
+      "availableCoupons": false,
+      "itemCreationDate": "2024-03-12T20:27:59.000Z",
+      "topRatedBuyingExperience": false,
+      "priorityListing": false,
+      "listingMarketplaceId": "EBAY_US"
+    },
+    {
+      "itemId": "v1|226144803412|0",
+      "title": " air max",
+      "leafCategoryIds": [
+        "15709"
+      ],
+      "categories": [
+        {
+          "categoryId": "15709",
+          "categoryName": "Athletic Shoes"
+        },
+        {
+          "categoryId": "11450",
+          "categoryName": "Clothing, Shoes & Accessories"
+        },
+        {
+          "categoryId": "260012",
+          "categoryName": "Men"
+        },
+        {
+          "categoryId": "93427",
+          "categoryName": "Men's Shoes"
+        }
+      ],
+      "image": {
+        "imageUrl": "https://i.ebayimg.com/thumbs/images/g/ll4AAOSwey9mQrgE/s-l225.jpg"
+      },
+      "price": {
+        "value": "15.00",
+        "currency": "USD"
+      },
+      "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C226144803412%7C0",
+      "seller": {
+        "username": "rgrubb45013",
+        "feedbackPercentage": "100.0",
+        "feedbackScore": 93
+      },
+      "condition": "Pre-owned",
+      "conditionId": "3000",
+      "thumbnailImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/images/g/ll4AAOSwey9mQrgE/s-l1600.jpg"
+        }
+      ],
+      "shippingOptions": [
+        {
+          "shippingCostType": "FIXED",
+          "shippingCost": {
+            "value": "10.00",
+            "currency": "USD"
+          }
+        }
+      ],
+      "buyingOptions": [
+        "FIXED_PRICE",
+        "BEST_OFFER"
+      ],
+      "itemWebUrl": "https://www.ebay.com/itm/226144803412?hash=item34a747da54:g:ll4AAOSwey9mQrgE",
+      "itemLocation": {
+        "postalCode": "450**",
+        "country": "US"
+      },
+      "additionalImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/A~4AAOSw835mQrgF/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/qzAAAOSwjjJmQrgH/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/zmoAAOSwOq5mQrgI/s-l225.jpg"
+        }
+      ],
+      "adultOnly": false,
+      "legacyItemId": "226144803412",
+      "availableCoupons": false,
+      "itemCreationDate": "2024-05-14T01:02:19.000Z",
+      "topRatedBuyingExperience": false,
+      "priorityListing": false,
+      "listingMarketplaceId": "EBAY_US"
+    },
+    {
+      "itemId": "v1|266811070255|0",
+      "title": "Nike Air Jordan 7 Retro Barcelona Days size 10.5 304775-016 OG VII ",
+      "leafCategoryIds": [
+        "15709"
+      ],
+      "categories": [
+        {
+          "categoryId": "15709",
+          "categoryName": "Athletic Shoes"
+        },
+        {
+          "categoryId": "11450",
+          "categoryName": "Clothing, Shoes & Accessories"
+        },
+        {
+          "categoryId": "260012",
+          "categoryName": "Men"
+        },
+        {
+          "categoryId": "93427",
+          "categoryName": "Men's Shoes"
+        }
+      ],
+      "image": {
+        "imageUrl": "https://i.ebayimg.com/thumbs/images/g/7iQAAOSwk0FmQqZ5/s-l225.jpg"
+      },
+      "price": {
+        "value": "70.00",
+        "currency": "USD"
+      },
+      "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C266811070255%7C0",
+      "seller": {
+        "username": "familycirclethrift",
+        "feedbackPercentage": "100.0",
+        "feedbackScore": 195
+      },
+      "condition": "Pre-owned",
+      "conditionId": "3000",
+      "thumbnailImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/images/g/7iQAAOSwk0FmQqZ5/s-l1600.jpg"
+        }
+      ],
+      "shippingOptions": [
+        {
+          "shippingCostType": "FIXED",
+          "shippingCost": {
+            "value": "14.99",
+            "currency": "USD"
+          }
+        }
+      ],
+      "buyingOptions": [
+        "FIXED_PRICE"
+      ],
+      "epid": "2310850276",
+      "itemWebUrl": "https://www.ebay.com/itm/266811070255?hash=item3e1f2dd72f:g:7iQAAOSwk0FmQqZ5",
+      "itemLocation": {
+        "postalCode": "303**",
+        "country": "US"
+      },
+      "additionalImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/6ZkAAOSwbtZmQqZ6/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/728AAOSwKelmQqZ8/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/mncAAOSw5DFmQqZ-/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/FacAAOSwUbBmQqZ~/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/4scAAOSwtatmQqaC/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/iPoAAOSwsBxmQqaD/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/nLYAAOSwTAdmQqaF/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/USwAAOSwLT1mQqaH/s-l225.jpg"
+        }
+      ],
+      "adultOnly": false,
+      "legacyItemId": "266811070255",
+      "availableCoupons": false,
+      "itemCreationDate": "2024-05-13T23:50:10.000Z",
+      "topRatedBuyingExperience": false,
+      "priorityListing": false,
+      "listingMarketplaceId": "EBAY_US"
+    },
+    {
+      "itemId": "v1|364859680817|634423294215",
+      "title": "Nike Air Max Plus TN3 Men's Shoes Running Trainers \"Black Red Yellow\"",
+      "itemGroupHref": "https://api.ebay.com/buy/browse/v1/item/get_items_by_item_group?item_group_id=364859680817",
+      "leafCategoryIds": [
+        "15709"
+      ],
+      "categories": [
+        {
+          "categoryId": "15709",
+          "categoryName": "Athletic Shoes"
+        },
+        {
+          "categoryId": "11450",
+          "categoryName": "Clothing, Shoes & Accessories"
+        },
+        {
+          "categoryId": "260012",
+          "categoryName": "Men"
+        },
+        {
+          "categoryId": "93427",
+          "categoryName": "Men's Shoes"
+        }
+      ],
+      "image": {
+        "imageUrl": "https://i.ebayimg.com/thumbs/images/g/vtQAAOSwtC1mKfqS/s-l225.jpg"
+      },
+      "price": {
+        "value": "85.99",
+        "currency": "USD"
+      },
+      "itemGroupType": "SELLER_DEFINED_VARIATIONS",
+      "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C364859680817%7C634423294215",
+      "seller": {
+        "username": "silves_6",
+        "feedbackPercentage": "83.3",
+        "feedbackScore": 8
+      },
+      "condition": "New with defects",
+      "conditionId": "1750",
+      "thumbnailImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/images/g/vtQAAOSwtC1mKfqS/s-l1200.jpg"
+        }
+      ],
+      "shippingOptions": [
+        {
+          "shippingCostType": "FIXED",
+          "shippingCost": {
+            "value": "0.00",
+            "currency": "USD"
+          }
+        }
+      ],
+      "buyingOptions": [
+        "FIXED_PRICE"
+      ],
+      "itemWebUrl": "https://www.ebay.com/itm/364859680817?hash=item54f354e831:g:vtQAAOSwtC1mKfqS",
+      "itemLocation": {
+        "postalCode": "900**",
+        "country": "US"
+      },
+      "additionalImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/9UEAAOSwBtlmKfqS/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/EP4AAOSwJANmKfqS/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/eS0AAOSwe4pmKfqS/s-l225.jpg"
+        }
+      ],
+      "adultOnly": false,
+      "legacyItemId": "364859680817",
+      "availableCoupons": false,
+      "itemCreationDate": "2024-04-25T08:37:01.000Z",
+      "topRatedBuyingExperience": false,
+      "priorityListing": false,
+      "listingMarketplaceId": "EBAY_US"
+    },
+    {
+      "itemId": "v1|355711466772|0",
+      "title": "Nike Air Jordan Retro 6 Diffused Blue 384664400 Size 9.5 Men",
+      "leafCategoryIds": [
+        "15709"
+      ],
+      "categories": [
+        {
+          "categoryId": "15709",
+          "categoryName": "Athletic Shoes"
+        },
+        {
+          "categoryId": "11450",
+          "categoryName": "Clothing, Shoes & Accessories"
+        },
+        {
+          "categoryId": "260012",
+          "categoryName": "Men"
+        },
+        {
+          "categoryId": "93427",
+          "categoryName": "Men's Shoes"
+        }
+      ],
+      "image": {
+        "imageUrl": "https://i.ebayimg.com/thumbs/images/g/hkoAAOSwuYxmQkdG/s-l225.jpg"
+      },
+      "price": {
+        "value": "56.99",
+        "currency": "USD"
+      },
+      "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C355711466772%7C0",
+      "seller": {
+        "username": "jamessellsshoes",
+        "feedbackPercentage": "100.0",
+        "feedbackScore": 416
+      },
+      "condition": "Pre-owned",
+      "conditionId": "3000",
+      "thumbnailImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/images/g/hkoAAOSwuYxmQkdG/s-l1600.jpg"
+        }
+      ],
+      "shippingOptions": [
+        {
+          "shippingCostType": "FIXED",
+          "shippingCost": {
+            "value": "0.00",
+            "currency": "USD"
+          }
+        }
+      ],
+      "buyingOptions": [
+        "FIXED_PRICE"
+      ],
+      "epid": "8039807221",
+      "itemWebUrl": "https://www.ebay.com/itm/355711466772?hash=item52d20e3d14:g:hkoAAOSwuYxmQkdG",
+      "itemLocation": {
+        "postalCode": "601**",
+        "country": "US"
+      },
+      "additionalImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/JBgAAOSw6k5mQkdH/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/9noAAOSws6NmQkdI/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/NX8AAOSwei5mQkdJ/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/wvEAAOSw1q5mQkdM/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/JBIAAOSwp6xmQkdb/s-l225.jpg"
+        }
+      ],
+      "adultOnly": false,
+      "legacyItemId": "355711466772",
+      "availableCoupons": false,
+      "itemCreationDate": "2024-05-13T17:02:14.000Z",
+      "topRatedBuyingExperience": false,
+      "priorityListing": false,
+      "listingMarketplaceId": "EBAY_US"
+    },
+    {
+      "itemId": "v1|375427792694|0",
+      "title": "Size 8.5 - Nike Dunk Low x LeBron James x Fruity Pebbles Red",
+      "leafCategoryIds": [
+        "15709"
+      ],
+      "categories": [
+        {
+          "categoryId": "15709",
+          "categoryName": "Athletic Shoes"
+        },
+        {
+          "categoryId": "11450",
+          "categoryName": "Clothing, Shoes & Accessories"
+        },
+        {
+          "categoryId": "260012",
+          "categoryName": "Men"
+        },
+        {
+          "categoryId": "93427",
+          "categoryName": "Men's Shoes"
+        }
+      ],
+      "image": {
+        "imageUrl": "https://i.ebayimg.com/thumbs/images/g/CskAAOSwOGdmQq6f/s-l225.jpg"
+      },
+      "price": {
+        "value": "65.00",
+        "currency": "USD"
+      },
+      "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C375427792694%7C0",
+      "seller": {
+        "username": "blbas_40",
+        "feedbackPercentage": "100.0",
+        "feedbackScore": 4
+      },
+      "condition": "Pre-owned",
+      "conditionId": "3000",
+      "thumbnailImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/images/g/CskAAOSwOGdmQq6f/s-l1600.jpg"
+        }
+      ],
+      "shippingOptions": [
+        {
+          "shippingCostType": "CALCULATED"
+        }
+      ],
+      "buyingOptions": [
+        "FIXED_PRICE",
+        "BEST_OFFER"
+      ],
+      "epid": "2329334271",
+      "itemWebUrl": "https://www.ebay.com/itm/375427792694?hash=item57693d7f36:g:CskAAOSwOGdmQq6f",
+      "itemLocation": {
+        "postalCode": "945**",
+        "country": "US"
+      },
+      "additionalImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/aSkAAOSw0f1mQq6f/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/KewAAOSwk6RmQq6f/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/MMgAAOSwqrpmQq6f/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/b-oAAOSweGZmQq6i/s-l225.jpg"
+        }
+      ],
+      "adultOnly": false,
+      "legacyItemId": "375427792694",
+      "availableCoupons": false,
+      "itemCreationDate": "2024-05-14T00:22:32.000Z",
+      "topRatedBuyingExperience": false,
+      "priorityListing": false,
+      "listingMarketplaceId": "EBAY_US"
+    },
+    {
+      "itemId": "v1|404975828854|0",
+      "title": "Nike SB Dunk Low Candy Cane",
+      "leafCategoryIds": [
+        "15709"
+      ],
+      "categories": [
+        {
+          "categoryId": "15709",
+          "categoryName": "Athletic Shoes"
+        },
+        {
+          "categoryId": "11450",
+          "categoryName": "Clothing, Shoes & Accessories"
+        },
+        {
+          "categoryId": "260012",
+          "categoryName": "Men"
+        },
+        {
+          "categoryId": "93427",
+          "categoryName": "Men's Shoes"
+        }
+      ],
+      "image": {
+        "imageUrl": "https://i.ebayimg.com/thumbs/images/g/uXMAAOSwfe1mQrfp/s-l225.jpg"
+      },
+      "price": {
+        "value": "150.00",
+        "currency": "USD"
+      },
+      "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C404975828854%7C0",
+      "seller": {
+        "username": "doom_pops",
+        "feedbackPercentage": "100.0",
+        "feedbackScore": 94
+      },
+      "condition": "Pre-owned",
+      "conditionId": "3000",
+      "thumbnailImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/images/g/uXMAAOSwfe1mQrfp/s-l1600.jpg"
+        }
+      ],
+      "buyingOptions": [
+        "FIXED_PRICE",
+        "BEST_OFFER"
+      ],
+      "epid": "16039821738",
+      "itemWebUrl": "https://www.ebay.com/itm/404975828854?hash=item5e4a70bf76:g:uXMAAOSwfe1mQrfp",
+      "itemLocation": {
+        "postalCode": "902**",
+        "country": "US"
+      },
+      "additionalImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/oqoAAOSwiQlmQrfx/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/iDAAAOSwJ0lmQrfq/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/9CIAAOSweB5mQrfr/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/MvwAAOSwvf1mQrfq/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/lUwAAOSw~D5mQrfq/s-l225.jpg"
+        }
+      ],
+      "adultOnly": false,
+      "legacyItemId": "404975828854",
+      "availableCoupons": false,
+      "itemCreationDate": "2024-05-14T01:01:42.000Z",
+      "topRatedBuyingExperience": false,
+      "priorityListing": false,
+      "listingMarketplaceId": "EBAY_US"
+    },
+    {
+      "itemId": "v1|226144681568|0",
+      "title": "Size 9 - Nike Air Force 1 x Supreme Low Box Logo - White",
+      "leafCategoryIds": [
+        "15709"
+      ],
+      "categories": [
+        {
+          "categoryId": "15709",
+          "categoryName": "Athletic Shoes"
+        },
+        {
+          "categoryId": "11450",
+          "categoryName": "Clothing, Shoes & Accessories"
+        },
+        {
+          "categoryId": "260012",
+          "categoryName": "Men"
+        },
+        {
+          "categoryId": "93427",
+          "categoryName": "Men's Shoes"
+        }
+      ],
+      "image": {
+        "imageUrl": "https://i.ebayimg.com/thumbs/images/g/0KUAAOSwvQdmQp7-/s-l225.jpg"
+      },
+      "price": {
+        "value": "75.00",
+        "currency": "USD"
+      },
+      "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C226144681568%7C0",
+      "seller": {
+        "username": "jandellly",
+        "feedbackPercentage": "0.0",
+        "feedbackScore": 0
+      },
+      "condition": "Pre-owned",
+      "conditionId": "3000",
+      "thumbnailImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/images/g/0KUAAOSwvQdmQp7-/s-l1600.jpg"
+        }
+      ],
+      "buyingOptions": [
+        "FIXED_PRICE",
+        "BEST_OFFER"
+      ],
+      "epid": "25039798442",
+      "itemWebUrl": "https://www.ebay.com/itm/226144681568?hash=item34a745fe60:g:0KUAAOSwvQdmQp7-&amdata=enc%3AAQAJAAAA0Mf5gWW6FaPXM7Q5vWhMO45cNKuhxNehkLhIlPFvffW09xxaB%2FKELx3tZWF5gJfuFkN2DU%2BSyRo2%2Fl254D9jnIh39bMhKGl2WpttSlzy7kzK6C264ysRFUs%2BfnQE0VCBe26FoO%2BWZrwVTCEDuH5e5nEK3EysdKiyJvpgJZBtANc5y%2Fxk6F2heKZ5VB%2FTGabhQr6w97j6kjajMo6hi2168JAx9YRPW3O8FuOzLcNb0XoquAit7x15VyR4eDLDknkk2nANAJ%2FytkjZQDkZDAk9uaM%3D",
+      "itemLocation": {
+        "postalCode": "221**",
+        "country": "US"
+      },
+      "additionalImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/7AYAAOSwjPlmQp7-/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/~TkAAOSwd5FmQp7~/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/oOcAAOSwVxZmQp8w/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/MYYAAOSwStdmQp8w/s-l225.jpg"
+        }
+      ],
+      "adultOnly": false,
+      "legacyItemId": "226144681568",
+      "availableCoupons": false,
+      "itemCreationDate": "2024-05-13T23:20:38.000Z",
+      "topRatedBuyingExperience": false,
+      "priorityListing": true,
+      "listingMarketplaceId": "EBAY_US"
+    },
+    {
+      "itemId": "v1|315191020344|613664035938",
+      "title": "Nike COURT VISION LOW NN Men's All White DH2987-100 Athletic Sneaker Shoes",
+      "itemGroupHref": "https://api.ebay.com/buy/browse/v1/item/get_items_by_item_group?item_group_id=315191020344",
+      "leafCategoryIds": [
+        "15709"
+      ],
+      "categories": [
+        {
+          "categoryId": "15709",
+          "categoryName": "Athletic Shoes"
+        },
+        {
+          "categoryId": "11450",
+          "categoryName": "Clothing, Shoes & Accessories"
+        },
+        {
+          "categoryId": "260012",
+          "categoryName": "Men"
+        },
+        {
+          "categoryId": "93427",
+          "categoryName": "Men's Shoes"
+        }
+      ],
+      "image": {
+        "imageUrl": "https://i.ebayimg.com/thumbs/images/g/uq0AAOSwypBl4MyN/s-l225.jpg"
+      },
+      "price": {
+        "value": "70.95",
+        "currency": "USD"
+      },
+      "itemGroupType": "SELLER_DEFINED_VARIATIONS",
+      "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1%7C315191020344%7C613664035938",
+      "seller": {
+        "username": "shoes_bootz_and_more",
+        "feedbackPercentage": "99.1",
+        "feedbackScore": 10235
+      },
+      "condition": "New with box",
+      "conditionId": "1000",
+      "thumbnailImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/images/g/uq0AAOSwypBl4MyN/s-l1600.jpg"
+        }
+      ],
+      "shippingOptions": [
+        {
+          "shippingCostType": "FIXED",
+          "shippingCost": {
+            "value": "0.00",
+            "currency": "USD"
+          }
+        }
+      ],
+      "buyingOptions": [
+        "FIXED_PRICE"
+      ],
+      "epid": "23051591857",
+      "itemWebUrl": "https://www.ebay.com/itm/315191020344?hash=item4962d94b38:g:uq0AAOSwypBl4MyN&amdata=enc%3AAQAJAAAA0BgQ0PyJyKmcZzEcu5%2FWWFYV2jn2taNoJzX%2BXGWcUOyD8U2avt0A%2BypzhO23vioC64Hzb6t%2FNVECNhxBlBEYphU3Sx94sJAlZG4JqcKj57S38UCfd97jfMRDf0dwvT5lqs9iPTxZEA6pu%2FYmUOa%2BWhV9fORZ5S%2F1XaxQG2b%2FqZIoqTHcJx8%2F5OpUCJZy1Aexk2fCpbm6I2tJLfMItdv6gZ5X8%2BRGrz3DLgk7j2Yd5qEUnqKZKCSXeUjQxEOGJQghKEt2%2B%2B5PWDM34WTFla8IC2E%3D",
+      "itemLocation": {
+        "postalCode": "421**",
+        "country": "US"
+      },
+      "additionalImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/-DAAAOSw7uRl4MyH/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/GSMAAOSwG8xl4MyJ/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/NlEAAOSwmoZl4MyM/s-l225.jpg"
+        },
+        {
+          "imageUrl": "https://i.ebayimg.com/thumbs/images/g/N-oAAOSw2IVl4MyK/s-l225.jpg"
+        }
+      ],
+      "adultOnly": false,
+      "legacyItemId": "315191020344",
+      "availableCoupons": false,
+      "itemCreationDate": "2024-02-29T18:27:57.000Z",
+      "topRatedBuyingExperience": false,
+      "priorityListing": true,
+      "listingMarketplaceId": "EBAY_US"
+    }
+  ]
+}
