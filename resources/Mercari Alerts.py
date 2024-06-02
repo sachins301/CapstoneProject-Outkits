@@ -47,7 +47,7 @@ output_file = "search_results.xlsx"
 send_email(
     subject="Search Results",
     body="Please find attached the search results.",
-    to="u1482560@utah.edu",
+    to="mariadow@gmail.com",
     attachment_path=output_file
 )
 
