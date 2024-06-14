@@ -1,7 +1,9 @@
 import importlib.util
 import os
 import smtplib
+import time
 from email.message import EmailMessage
+import datetime
 
 # Load the existing code from the provided file
 file_path = 'xlsx_mercari.py'
@@ -52,3 +54,9 @@ send_email(
 )
 
 print ('successfully sent the mail')
+# Sleep for 24 hours (86400 seconds)
+        time.sleep(86400)
+
+if __name__ == "__main__":
+    main()
+
