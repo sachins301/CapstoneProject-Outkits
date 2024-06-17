@@ -134,6 +134,7 @@ for query in queries:
             ws.append(row)
     else:
         print(f"No items found for query: {query}")
+    time.sleep(0.5)
 
 # Save the workbook to a file
 wb.save("outputposhmark.xlsx")
