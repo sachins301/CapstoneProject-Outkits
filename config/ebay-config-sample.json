@@ -1,8 +1,8 @@
 {
 	"api.ebay.com": {
 		"devid": "57622e67-4317-4256-83c9-9a59eb0e89f8",
-		"certid": "xxx-ac0546174f59-2748-445e-8d93-4598",
+		"certid": "PRD-ac0546174f59-2748-445e-8d93-4598",
 		"redirecturi": "<redirect_uri-from-developer-portal>",
-		"appid": "SachinSu-xxxxxxx-PRD-0ac054617-22f59fea"
+		"appid": "SachinSu-OUTKITS-PRD-0ac054617-22f59fea"
 	}
 }
