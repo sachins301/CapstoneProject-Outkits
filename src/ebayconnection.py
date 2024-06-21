@@ -1,11 +1,7 @@
 import base64
 from datetime import datetime, timedelta
-import http.client
 import json
 import requests
-# from ebayoauth.oauthclient.oauth2api import oauth2api
-# from ebayoauth.oauthclient.credentialutil import credentialutil
-# from ebayoauth.oauthclient.model.model import environment
 import logging
 
 
