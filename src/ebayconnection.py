@@ -3,7 +3,9 @@ from datetime import datetime, timedelta
 import json
 import requests
 import logging
-
+import pandas as pd
+from pandas import json_normalize
+import json
 
 class oAuth_token(object):
 
@@ -70,69 +72,62 @@ class Credentials(object):
         self.client_secret = client_secret
         self.ru_name = ru_name
 
+def fetch_token():
+    credential = Credentials(client_id, client_secret, dev_id, ru_name)
 
-credential = Credentials(client_id, client_secret, dev_id, ru_name)
-
-app_scopes = "https://api.ebay.com/oauth/api_scope"
+    app_scopes = "https://api.ebay.com/oauth/api_scope"
 
 
-headers = _generate_request_headers(credential)
-body = _generate_application_request_body(app_scopes)
+    headers = _generate_request_headers(credential)
+    body = _generate_application_request_body(app_scopes)
 
-resp = requests.post(environment.PRODUCTION.api_endpoint, data=body, headers=headers)
-content = json.loads(resp.content)
-token = oAuth_token()
+    resp = requests.post(environment.PRODUCTION.api_endpoint, data=body, headers=headers)
+    content = json.loads(resp.content)
+    token = oAuth_token()
 
-if resp.status_code == requests.codes.ok:
-    token.access_token = content['access_token']
-    # set token expiration time 5 minutes before actual expire time
-    token.token_expiry = datetime.utcnow() + timedelta(seconds=int(content['expires_in'])) - timedelta(minutes=5)
+    if resp.status_code == requests.codes.ok:
+        token.access_token = content['access_token']
+        # set token expiration time 5 minutes before actual expire time
+        token.token_expiry = datetime.utcnow() + timedelta(seconds=int(content['expires_in'])) - timedelta(minutes=5)
 
-else:
-    token.error = str(resp.status_code) + ': ' + content['error_description']
-    logging.error("Unable to retrieve token.  Status code: %s - %s", resp.status_code,
-                  requests.status_codes._codes[resp.status_code])
-    logging.error("Error: %s - %s", content['error'], content['error_description'])
+    else:
+        token.error = str(resp.status_code) + ': ' + content['error_description']
+        logging.error("Unable to retrieve token.  Status code: %s - %s", resp.status_code,
+                      requests.status_codes._codes[resp.status_code])
+        logging.error("Error: %s - %s", content['error'], content['error_description'])
 
-url = "https://api.ebay.com/buy/browse/v1/item_summary/search?q=Nike%20SB%20MF%20DOOM&limit=10"
+    return token
 
-bearer_token = "Bearer "+token.access_token
-payload = {}
-headers = {
-    'Authorization': bearer_token
-}
+def connect():
+    url = "https://api.ebay.com/buy/browse/v1/item_summary/search?q=Nike%20SB%20MF%20DOOM&limit=10"
 
-response = requests.request("GET", url, headers=headers, data=payload)
+    token = fetch_token()
+    bearer_token = "Bearer "+token.access_token
+    payload = {}
+    headers = {
+        'Authorization': bearer_token
+    }
 
-print(response.json())
+    response = requests.request("GET", url, headers=headers, data=payload)
 
-if response.status_code == 200:
-    # Extract JSON content from the response
-    json_content = response.json()
+    print(response.json())
 
-#     # Save the JSON content to a file
-#     with open('../resources/ebaydata.json', 'w') as f:
-#         json.dump(json_content, f)
-#
-#     print("JSON file saved successfully.")
-# else:
-#     print("Error:", response.status_code)
-#
-import pandas as pd
-from pandas import json_normalize
-import json
-#
-# json_path = "../resources/ebaydata.json"
-#
-# with open(json_path, "r") as file:
-#     json_data = json.load(file)
+    if response.status_code == 200:
+        # Extract JSON content from the response
+        json_content = response.json()
 
-if 'itemSummaries' in json_content:
-    item_summaries = json_content['itemSummaries']
-    print(item_summaries)
-else:
-    print("Key 'itemSummaries' not found in the JSON data.")
+    if 'itemSummaries' in json_content:
+        item_summaries = json_content['itemSummaries']
+        print(item_summaries)
+    else:
+        print("Key 'itemSummaries' not found in the JSON data.")
 
-df = json_normalize(item_summaries)
+    df = json_normalize(item_summaries)
 
-df.to_csv('../resources/ebaydata.csv', index=False)
+    df.to_csv('../resources/ebaydata.csv', index=False)
+
+
+
+
+if __name__ == "__main__":
+    connect()
