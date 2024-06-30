@@ -1,0 +1,3 @@
+2024-06-30 09:44:15,985 - __main__ - INFO - Starting ebay connection
+2024-06-30 09:44:16,177 - __main__ - INFO - Ebay accesss token fetched.
+2024-06-30 09:44:16,519 - __main__ - INFO - API request successful with status code 200

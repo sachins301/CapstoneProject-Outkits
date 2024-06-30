@@ -53,6 +53,9 @@ def generate_application_request_body(scopes):
     return body
 
 class EbayConnection:
+    def __init__(self, logger):
+        self.logger = logger
+
     def fetch_token(self, client_id, client_secret, dev_id, ru_name):
         credential = Credentials(client_id, client_secret, dev_id, ru_name)
         app_scopes = "https://api.ebay.com/oauth/api_scope"
@@ -65,14 +68,15 @@ class EbayConnection:
         token = oAuthToken()
 
         if resp.status_code == requests.codes.ok:
+            self.logger.info("Ebay accesss token fetched.")
             token.access_token = content['access_token']
             # set token expiration time 5 minutes before actual expire time
             token.token_expiry = datetime.utcnow() + timedelta(seconds=int(content['expires_in'])) - timedelta(minutes=5)
         else:
             token.error = f"{resp.status_code}: {content.get('error_description', 'No description')}"
-            logging.error("Unable to retrieve token. Status code: %s - %s", resp.status_code,
+            self.logger.error("Unable to retrieve token. Status code: %s - %s", resp.status_code,
                           requests.status_codes._codes[resp.status_code])
-            logging.error("Error: %s - %s", content.get('error', 'No error'), content.get('error_description', 'No description'))
+            self.logger.error("Error: %s - %s", content.get('error', 'No error'), content.get('error_description', 'No description'))
 
         return token
 
@@ -90,7 +94,7 @@ class EbayConnection:
 
         token = self.fetch_token(client_id, client_secret, dev_id, ru_name)
         if token.access_token is None:
-            logging.error("Failed to fetch access token")
+            self.logger.error("Failed to fetch access token")
             return
 
         bearer_token = "Bearer " + token.access_token
@@ -100,17 +104,23 @@ class EbayConnection:
 
         response = requests.get(url, headers=headers)
         if response.status_code != 200:
-            logging.error("API request failed with status code %s", response.status_code)
+            self.logger.error("API request failed with status code %s", response.status_code)
             return
-
+        self.logger.info("API request successful with status code %s", response.status_code)
         json_content = response.json()
         if 'itemSummaries' not in json_content:
-            logging.error("Key 'itemSummaries' not found in the JSON data.")
+            self.logger.error("Key 'itemSummaries' not found in the JSON data.")
             return
 
         item_summaries = json_content['itemSummaries']
         df = json_normalize(item_summaries)
-        df.to_csv('../resources/ebaydata.csv', index=False)
+        try:
+            df.to_csv('../resources/ebaydata.csv', index=False)
+            self.logger.info("Ebay data written to ../resources/ebaydata.csv")
+        except Exception as ex:
+            self.logger.error("Failed writing ebay data to file", ex)
+
+        return df
 
 if __name__ == "__main__":
     connection = EbayConnection()
