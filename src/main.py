@@ -1,11 +1,14 @@
+
+
 import pandas as pd
 from pandas import DataFrame
 import logging
 
+from common import commonutil
 from src.depopconnection import DepopConnection
 from src.ebayconnection import EbayConnection
 from src.mercariconnection import MercariConnection
-
+from src.poshmarkconnection import PoshmarkConnection
 
 if __name__ == "__main__":
     logger = logging.getLogger(__name__)
@@ -46,3 +49,25 @@ if __name__ == "__main__":
         depop_connection.connect()
     except Exception as ex:
         logger.exception("Exception in Depop", ex)
+
+    # Poshmark Connection
+    try:
+        logger.info("Starting Mercari connection")
+        poshmark_connection = PoshmarkConnection(logger)
+        poshmark_connection.connect()
+    except Exception as ex:
+        logger.exception("Exception in Poshmark", ex)
+
+
+    try:
+        attachment_paths = ['../resources/outputmercari.xlsx', '../resources/outputposhmark.xlsx', '../resources/outputdepop.xlsx']
+        commonutil.send_email(
+            subject="Search Results for APIS",
+            body="Please find attached the search results.",
+            to="u1452118@utah.edu",
+            attachment_paths=attachment_paths
+        )
+    except Exception as ex:
+        logger.exception("Failed to send email notification", ex)
+    else:
+        logger.info('Successfully sent the mail')
