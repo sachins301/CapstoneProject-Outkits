@@ -1,3 +1,58 @@
-2024-06-30 09:44:15,985 - __main__ - INFO - Starting ebay connection
-2024-06-30 09:44:16,177 - __main__ - INFO - Ebay accesss token fetched.
-2024-06-30 09:44:16,519 - __main__ - INFO - API request successful with status code 200
+2024-06-30 12:18:07,872 - __main__ - INFO - Starting ebay connection
+2024-06-30 12:18:08,096 - __main__ - INFO - Ebay accesss token fetched.
+2024-06-30 12:18:08,610 - __main__ - INFO - API request successful with status code 200
+2024-06-30 12:18:08,614 - __main__ - INFO - Ebay data written to ../resources/ebaydata.csv
+2024-06-30 12:18:08,615 - __main__ - INFO - Starting Mercari connection
+2024-06-30 12:18:08,621 - __main__ - INFO - Requesting data for query: Nike Dunk MF DOOM
+2024-06-30 12:18:09,902 - __main__ - INFO - Requesting data for query: Nike Dunk SB Stussy
+2024-06-30 12:18:11,251 - __main__ - INFO - Requesting data for query: Nike Dunk Pushead
+2024-06-30 12:18:12,235 - __main__ - INFO - Requesting data for query: Nike Dunk High SB Khaki Creed
+2024-06-30 12:18:13,417 - __main__ - INFO - Requesting data for query: Nike Dunk 6.0 Hemp
+2024-06-30 12:18:14,457 - __main__ - INFO - Requesting data for query: Nike Dunk SB Mocha
+2024-06-30 12:18:15,501 - __main__ - INFO - Requesting data for query: Nike Dunk SB Bison
+2024-06-30 12:18:16,518 - __main__ - INFO - Requesting data for query: Nike Dunk SB Mocha Choc
+2024-06-30 12:18:17,619 - __main__ - INFO - Requesting data for query: Nike Dunk SB Medusa
+2024-06-30 12:18:18,602 - __main__ - INFO - Requesting data for query: Nike Dunk SB Oompa Loompa
+2024-06-30 12:18:19,606 - __main__ - INFO - Requesting data for query: Nike 6.0 NKE Quasar Purple
+2024-06-30 12:18:20,630 - __main__ - INFO - Requesting data for query: Nike Dunk SB Crown Royal
+2024-06-30 12:18:22,317 - __main__ - INFO - Requesting data for query: Nike Dunk Palm Green
+2024-06-30 12:18:23,468 - __main__ - INFO - Requesting data for query: Nike Dunk Low Cargo Khaki
+2024-06-30 12:18:24,819 - __main__ - INFO - Requesting data for query: Nike Dunk CL demim
+2024-06-30 12:18:25,839 - __main__ - INFO - Requesting data for query: Nike Dunk Low Pro Mushroom
+2024-06-30 12:18:27,150 - __main__ - INFO - Requesting data for query: Nike Dunk Low SB Tweed
+2024-06-30 12:18:28,436 - __main__ - INFO - Requesting data for query: Nike Dunk Low ACG
+2024-06-30 12:18:29,616 - __main__ - INFO - Requesting data for query: Dunk Low Pro Obsidian
+2024-06-30 12:18:31,204 - __main__ - INFO - Requesting data for query: Dunk Low Pro Midnight Navy
+2024-06-30 12:18:32,520 - __main__ - INFO - Requesting data for query: Nike Dunk Low Pro Mesa
+2024-06-30 12:18:33,727 - __main__ - INFO - Requesting data for query: Dunk Low Pro B Olive
+2024-06-30 12:18:34,741 - __main__ - INFO - Requesting data for query: Nike SB Dunk Trail End
+2024-06-30 12:18:35,763 - __main__ - INFO - Requesting data for query: Nike SB Dunk Dusty Cactus
+2024-06-30 12:18:36,965 - __main__ - INFO - Requesting data for query: Pro B Oxide
+2024-06-30 12:18:38,093 - __main__ - INFO - Search results have been saved to ../resources/outputmercari.xlsx.
+2024-06-30 12:18:38,093 - __main__ - INFO - Starting Mercari connection
+2024-06-30 12:18:38,099 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk MF DOOM
+2024-06-30 12:18:41,658 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk SB Stussy
+2024-06-30 12:18:45,375 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk Pushead
+2024-06-30 12:18:47,941 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk High SB Khaki Creed
+2024-06-30 12:18:50,292 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk 6.0 Hemp
+2024-06-30 12:18:55,428 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk SB Mocha
+2024-06-30 12:18:58,596 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk SB Bison
+2024-06-30 12:19:01,856 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk SB Mocha Choc
+2024-06-30 12:19:08,260 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk SB Medusa
+2024-06-30 12:19:11,235 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk SB Oompa Loompa
+2024-06-30 12:19:14,833 - __main__ - INFO - Requesting data for query from Depop: Nike 6.0 NKE Quasar Purple
+2024-06-30 12:19:21,190 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk SB Crown Royal
+2024-06-30 12:19:27,958 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk Palm Green
+2024-06-30 12:19:31,962 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk Low Cargo Khaki
+2024-06-30 12:19:34,813 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk CL demim
+2024-06-30 12:19:42,861 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk Low Pro Mushroom
+2024-06-30 12:19:45,973 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk Low SB Tweed
+2024-06-30 12:19:54,637 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk Low ACG
+2024-06-30 12:19:57,975 - __main__ - INFO - Requesting data for query from Depop: Dunk Low Pro Obsidian
+2024-06-30 12:20:02,342 - __main__ - INFO - Requesting data for query from Depop: Dunk Low Pro Midnight Navy
+2024-06-30 12:20:07,111 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk Low Pro Mesa
+2024-06-30 12:20:10,055 - __main__ - INFO - Requesting data for query from Depop: Dunk Low Pro B Olive
+2024-06-30 12:20:12,893 - __main__ - INFO - Requesting data for query from Depop: Nike SB Dunk Trail End
+2024-06-30 12:20:16,434 - __main__ - INFO - Requesting data for query from Depop: Nike SB Dunk Dusty Cactus
+2024-06-30 12:20:19,667 - __main__ - INFO - Requesting data for query from Depop: Pro B Oxide
+2024-06-30 12:20:22,645 - __main__ - INFO - Search results have been saved to ../resources/outputdepop.xlsx.
