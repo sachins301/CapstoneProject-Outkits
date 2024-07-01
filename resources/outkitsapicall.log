@@ -1,0 +1,109 @@
+2024-06-30 12:47:29,599 - __main__ - INFO - Starting ebay connection
+2024-06-30 12:47:29,810 - __main__ - INFO - Ebay accesss token fetched.
+2024-06-30 12:47:30,213 - __main__ - INFO - API request successful with status code 200
+2024-06-30 12:47:30,217 - __main__ - INFO - Ebay data written to ../resources/ebaydata.csv
+2024-06-30 12:47:30,218 - __main__ - INFO - Starting Mercari connection
+2024-06-30 12:47:30,225 - __main__ - INFO - Requesting data for query: Nike Dunk MF DOOM
+2024-06-30 12:47:31,511 - __main__ - INFO - Requesting data for query: Nike Dunk SB Stussy
+2024-06-30 12:47:32,869 - __main__ - INFO - Requesting data for query: Nike Dunk Pushead
+2024-06-30 12:47:33,878 - __main__ - INFO - Requesting data for query: Nike Dunk High SB Khaki Creed
+2024-06-30 12:47:35,076 - __main__ - INFO - Requesting data for query: Nike Dunk 6.0 Hemp
+2024-06-30 12:47:36,170 - __main__ - INFO - Requesting data for query: Nike Dunk SB Mocha
+2024-06-30 12:47:37,289 - __main__ - INFO - Requesting data for query: Nike Dunk SB Bison
+2024-06-30 12:47:38,293 - __main__ - INFO - Requesting data for query: Nike Dunk SB Mocha Choc
+2024-06-30 12:47:39,330 - __main__ - INFO - Requesting data for query: Nike Dunk SB Medusa
+2024-06-30 12:47:40,365 - __main__ - INFO - Requesting data for query: Nike Dunk SB Oompa Loompa
+2024-06-30 12:47:41,328 - __main__ - INFO - Requesting data for query: Nike 6.0 NKE Quasar Purple
+2024-06-30 12:47:42,375 - __main__ - INFO - Requesting data for query: Nike Dunk SB Crown Royal
+2024-06-30 12:47:43,843 - __main__ - INFO - Requesting data for query: Nike Dunk Palm Green
+2024-06-30 12:47:44,907 - __main__ - INFO - Requesting data for query: Nike Dunk Low Cargo Khaki
+2024-06-30 12:47:46,428 - __main__ - INFO - Requesting data for query: Nike Dunk CL demim
+2024-06-30 12:47:47,435 - __main__ - INFO - Requesting data for query: Nike Dunk Low Pro Mushroom
+2024-06-30 12:47:48,787 - __main__ - INFO - Requesting data for query: Nike Dunk Low SB Tweed
+2024-06-30 12:47:50,074 - __main__ - INFO - Requesting data for query: Nike Dunk Low ACG
+2024-06-30 12:47:51,237 - __main__ - INFO - Requesting data for query: Dunk Low Pro Obsidian
+2024-06-30 12:47:52,298 - __main__ - INFO - Requesting data for query: Dunk Low Pro Midnight Navy
+2024-06-30 12:47:53,689 - __main__ - INFO - Requesting data for query: Nike Dunk Low Pro Mesa
+2024-06-30 12:47:55,244 - __main__ - INFO - Requesting data for query: Dunk Low Pro B Olive
+2024-06-30 12:47:56,274 - __main__ - INFO - Requesting data for query: Nike SB Dunk Trail End
+2024-06-30 12:47:57,291 - __main__ - INFO - Requesting data for query: Nike SB Dunk Dusty Cactus
+2024-06-30 12:47:58,567 - __main__ - INFO - Requesting data for query: Pro B Oxide
+2024-06-30 12:47:59,609 - __main__ - INFO - Search results have been saved to ../resources/outputmercari.xlsx.
+2024-06-30 12:47:59,609 - __main__ - INFO - Starting Mercari connection
+2024-06-30 12:47:59,614 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk MF DOOM
+2024-06-30 12:48:05,076 - __main__ - INFO - No items found for query: Nike Dunk MF DOOM
+2024-06-30 12:48:06,083 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk SB Stussy
+2024-06-30 12:48:10,417 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk Pushead
+2024-06-30 12:48:13,441 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk High SB Khaki Creed
+2024-06-30 12:48:15,927 - __main__ - INFO - No items found for query: Nike Dunk High SB Khaki Creed
+2024-06-30 12:48:16,937 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk 6.0 Hemp
+2024-06-30 12:48:19,940 - __main__ - INFO - No items found for query: Nike Dunk 6.0 Hemp
+2024-06-30 12:48:20,945 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk SB Mocha
+2024-06-30 12:48:25,072 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk SB Bison
+2024-06-30 12:48:28,139 - __main__ - INFO - No items found for query: Nike Dunk SB Bison
+2024-06-30 12:48:29,150 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk SB Mocha Choc
+2024-06-30 12:48:30,772 - __main__ - INFO - No items found for query: Nike Dunk SB Mocha Choc
+2024-06-30 12:48:31,773 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk SB Medusa
+2024-06-30 12:48:34,830 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk SB Oompa Loompa
+2024-06-30 12:48:38,604 - __main__ - INFO - Requesting data for query from Depop: Nike 6.0 NKE Quasar Purple
+2024-06-30 12:48:41,232 - __main__ - INFO - No items found for query: Nike 6.0 NKE Quasar Purple
+2024-06-30 12:48:42,234 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk SB Crown Royal
+2024-06-30 12:48:43,848 - __main__ - INFO - No items found for query: Nike Dunk SB Crown Royal
+2024-06-30 12:48:44,850 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk Palm Green
+2024-06-30 12:48:48,482 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk Low Cargo Khaki
+2024-06-30 12:48:51,733 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk CL demim
+2024-06-30 12:48:55,608 - __main__ - INFO - No items found for query: Nike Dunk CL demim
+2024-06-30 12:48:56,616 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk Low Pro Mushroom
+2024-06-30 12:48:59,347 - __main__ - INFO - No items found for query: Nike Dunk Low Pro Mushroom
+2024-06-30 12:49:00,354 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk Low SB Tweed
+2024-06-30 12:49:03,855 - __main__ - INFO - No items found for query: Nike Dunk Low SB Tweed
+2024-06-30 12:49:04,855 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk Low ACG
+2024-06-30 12:49:07,898 - __main__ - INFO - No items found for query: Nike Dunk Low ACG
+2024-06-30 12:49:08,900 - __main__ - INFO - Requesting data for query from Depop: Dunk Low Pro Obsidian
+2024-06-30 12:49:14,441 - __main__ - INFO - Requesting data for query from Depop: Dunk Low Pro Midnight Navy
+2024-06-30 12:49:17,480 - __main__ - INFO - No items found for query: Dunk Low Pro Midnight Navy
+2024-06-30 12:49:18,480 - __main__ - INFO - Requesting data for query from Depop: Nike Dunk Low Pro Mesa
+2024-06-30 12:49:21,115 - __main__ - INFO - Requesting data for query from Depop: Dunk Low Pro B Olive
+2024-06-30 12:49:24,274 - __main__ - INFO - No items found for query: Dunk Low Pro B Olive
+2024-06-30 12:49:25,284 - __main__ - INFO - Requesting data for query from Depop: Nike SB Dunk Trail End
+2024-06-30 12:49:29,808 - __main__ - INFO - Requesting data for query from Depop: Nike SB Dunk Dusty Cactus
+2024-06-30 12:49:33,023 - __main__ - INFO - No items found for query: Nike SB Dunk Dusty Cactus
+2024-06-30 12:49:34,032 - __main__ - INFO - Requesting data for query from Depop: Pro B Oxide
+2024-06-30 12:49:38,424 - __main__ - INFO - No items found for query: Pro B Oxide
+2024-06-30 12:49:39,554 - __main__ - INFO - Search results have been saved to ../resources/outputdepop.xlsx.
+2024-06-30 12:49:39,555 - __main__ - INFO - Starting Mercari connection
+2024-06-30 12:49:39,561 - __main__ - INFO - Requesting data for query from Poshmark: Nike Dunk MF DOOM
+2024-06-30 12:49:40,924 - __main__ - INFO - Requesting data for query from Poshmark: Nike Dunk SB Stussy
+2024-06-30 12:49:40,976 - __main__ - INFO - Error in Poshmark connections status code: 429
+2024-06-30 12:49:41,481 - __main__ - INFO - Requesting data for query from Poshmark: Nike Dunk Pushead
+2024-06-30 12:49:42,192 - __main__ - INFO - Requesting data for query from Poshmark: Nike Dunk High SB Khaki Creed
+2024-06-30 12:49:42,984 - __main__ - INFO - Requesting data for query from Poshmark: Nike Dunk 6.0 Hemp
+2024-06-30 12:49:43,038 - __main__ - INFO - Error in Poshmark connections status code: 429
+2024-06-30 12:49:43,547 - __main__ - INFO - Requesting data for query from Poshmark: Nike Dunk SB Mocha
+2024-06-30 12:49:44,396 - __main__ - INFO - Requesting data for query from Poshmark: Nike Dunk SB Bison
+2024-06-30 12:49:45,107 - __main__ - INFO - Requesting data for query from Poshmark: Nike Dunk SB Mocha Choc
+2024-06-30 12:49:45,159 - __main__ - INFO - Error in Poshmark connections status code: 429
+2024-06-30 12:49:45,661 - __main__ - INFO - Requesting data for query from Poshmark: Nike Dunk SB Medusa
+2024-06-30 12:49:46,397 - __main__ - INFO - Requesting data for query from Poshmark: Nike Dunk SB Oompa Loompa
+2024-06-30 12:49:47,495 - __main__ - INFO - Requesting data for query from Poshmark: Nike 6.0 NKE Quasar Purple
+2024-06-30 12:49:48,192 - __main__ - INFO - Requesting data for query from Poshmark: Nike Dunk SB Crown Royal
+2024-06-30 12:49:48,907 - __main__ - INFO - Requesting data for query from Poshmark: Nike Dunk Palm Green
+2024-06-30 12:49:48,962 - __main__ - INFO - Error in Poshmark connections status code: 429
+2024-06-30 12:49:49,475 - __main__ - INFO - Requesting data for query from Poshmark: Nike Dunk Low Cargo Khaki
+2024-06-30 12:49:50,341 - __main__ - INFO - Requesting data for query from Poshmark: Nike Dunk CL demim
+2024-06-30 12:49:51,155 - __main__ - INFO - Requesting data for query from Poshmark: Nike Dunk Low Pro Mushroom
+2024-06-30 12:49:51,213 - __main__ - INFO - Error in Poshmark connections status code: 429
+2024-06-30 12:49:51,726 - __main__ - INFO - Requesting data for query from Poshmark: Nike Dunk Low SB Tweed
+2024-06-30 12:49:52,471 - __main__ - INFO - Requesting data for query from Poshmark: Nike Dunk Low ACG
+2024-06-30 12:49:52,526 - __main__ - INFO - Error in Poshmark connections status code: 429
+2024-06-30 12:49:53,028 - __main__ - INFO - Requesting data for query from Poshmark: Dunk Low Pro Obsidian
+2024-06-30 12:49:53,081 - __main__ - INFO - Error in Poshmark connections status code: 429
+2024-06-30 12:49:53,588 - __main__ - INFO - Requesting data for query from Poshmark: Dunk Low Pro Midnight Navy
+2024-06-30 12:49:54,336 - __main__ - INFO - Requesting data for query from Poshmark: Nike Dunk Low Pro Mesa
+2024-06-30 12:49:55,031 - __main__ - INFO - Requesting data for query from Poshmark: Dunk Low Pro B Olive
+2024-06-30 12:49:55,085 - __main__ - INFO - Error in Poshmark connections status code: 429
+2024-06-30 12:49:55,588 - __main__ - INFO - Requesting data for query from Poshmark: Nike SB Dunk Trail End
+2024-06-30 12:49:56,273 - __main__ - INFO - Requesting data for query from Poshmark: Nike SB Dunk Dusty Cactus
+2024-06-30 12:49:57,342 - __main__ - INFO - Requesting data for query from Poshmark: Pro B Oxide
+2024-06-30 12:49:58,215 - __main__ - INFO - Search results have been saved to ../resources/outputposhmark.xlsx.
+2024-06-30 12:49:58,830 - __main__ - INFO - Successfully sent the mail
