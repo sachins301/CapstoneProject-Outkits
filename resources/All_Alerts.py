@@ -295,7 +295,7 @@ def send_email(subject, body, to, attachment_paths):
         else:
             print(f"File {attachment_path} does not exist.")
 
-    email_password = 'linq uvgf vagb beay'  # Replace with the generated app-specific password
+    email_password = 'okui erov ucsn drev'  # Replace with the generated app-specific password
 
     # Send the email
     try:
