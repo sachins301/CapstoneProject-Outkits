@@ -28,16 +28,17 @@ headers = {
 
 # Verify that headers are correct (for debugging)
 queries = [
-    "Nike Dunk MF DOOM"
-]
-
-print("Headers type before request:", type(headers))
-
-
-'''
-# List of queries to process
-queries = [
     "Nike Dunk MF DOOM",
+    "Nike SB MF DOOM",
+    "Nike Dunk Low 6.0",
+    "Nike SB Dunk Low Bigfoot",
+    "Carhartt Hooded Jacket Red",
+    "Carhartt Hooded Jacket Orange",
+    "Carhartt Hooded Jacket Teal",
+    "Carhartt Hooded Jacket Purple",
+    "Nike SB Dunk Size 12",
+    "Nike Dunk Cinder Brown",
+    "Nike Dunk Light Stone Bone",
     "Nike Dunk SB Stussy",
     "Nike Dunk Pushead",
     "Nike Dunk High SB Khaki Creed",
@@ -51,7 +52,7 @@ queries = [
     "Nike Dunk SB Crown Royal",
     "Nike Dunk Palm Green",
     "Nike Dunk Low Cargo Khaki",
-    "Nike Dunk CL denim",
+    "Nike Dunk CL demim",
     "Nike Dunk Low Pro Mushroom",
     "Nike Dunk Low SB Tweed",
     "Nike Dunk Low ACG",
@@ -63,7 +64,9 @@ queries = [
     "Nike SB Dunk Dusty Cactus",
     "Pro B Oxide"
 ]
-'''
+
+print("Headers type before request:", type(headers))
+
 # Create a new Excel workbook and a single sheet
 wb = Workbook()
 ws = wb.active
@@ -115,13 +118,13 @@ for query in queries:
             # Adjust the following key to match the actual structure of the response
             items = decoded_data.get('products', [])
 
-        # Filter items to include only those with the brand 'Nike'
-        nike_items = [item for item in items if item.get('brand') and item.get('brand').lower() == 'nike']
+        # Filter items to include only those with the brand 'Nike' or 'Carhartt'
+        selected_items = [item for item in items if item.get('brand') and item.get('brand').lower() in ['nike', 'carhartt']]
 
-        if nike_items:
+        if selected_items:
             items_found = True
             print(f"Items have been found for query: {query}")
-            for item in nike_items:
+            for item in selected_items:
                 row = []
                 for header in header_order:
                     if header == 'Gender':
