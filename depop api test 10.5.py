@@ -80,7 +80,7 @@ desired_columns = {
     'url': 'URL'
 }
 # New header order
-header_order = ['Name', 'Price', 'Size', 'Gender', 'URL']
+header_order = ['Name', 'Price', 'Size', 'Gender', 'URL', 'Images']
 
 # Append the headers to the sheet
 ws.append(header_order)
@@ -129,6 +129,9 @@ for query in queries:
                 for header in header_order:
                     if header == 'Gender':
                         cell_value = ''  # Blank column for Gender
+                    elif header == 'Images':
+                        images = item.get('images', [])
+                        cell_value = images[0] if images else ''  # Get the first image URL or empty string if no images
                     else:
                         cell_key = list(desired_columns.keys())[list(desired_columns.values()).index(header)]
                         if cell_key == 'price':
