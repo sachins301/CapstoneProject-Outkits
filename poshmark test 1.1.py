@@ -12,8 +12,6 @@ import os
 import smtplib
 from email.message import EmailMessage
 
-#Establish a connection to the Poshmark API
-
 # Function to extract the number from a string and remove the last zero (only for Poshmark)
 def extract_number(value):
     number = ''.join(filter(str.isdigit, value))
@@ -61,7 +59,7 @@ ws = wb.active
 ws.title = "All Queries"
 
 # Define the headers for the columns we are interested in
-headers = ['Name', 'Price', 'Size', 'Gender', 'URL']
+headers = ['Name', 'Price', 'Size', 'Gender', 'URL', 'Images']
 ws.append(headers)
 
 # Process each query
@@ -102,7 +100,11 @@ for query in queries:
             item_id = item.get('id', '')
             url = f"https://poshmark.com/listing/{clean_title}-{item_id}"
 
-            row = [title, price, size, department, url]
+            # Extract the first image URL from "pictures"
+            pictures = item.get('pictures', [])
+            first_image_url = pictures[0]['url'] if pictures else ''
+
+            row = [title, price, size, department, url, first_image_url]
             row = [clean_cell_value(cell) for cell in row]
             ws.append(row)
     else:
@@ -112,4 +114,3 @@ for query in queries:
 # Save the workbook to a file
 wb.save("outputposhmark.xlsx")
 print("Search results have been saved to outputposhmark.xlsx.")
-
