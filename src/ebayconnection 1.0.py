@@ -1,3 +1,5 @@
+#This code adds the first image url from additionalimages to the images column in xlsx. -RF 07/09/24
+
 import base64
 import json
 import logging
@@ -136,13 +138,22 @@ class EbayConnection:
                 df['Size'] = ''
                 df['Gender'] = ''
 
+                # Extract the first image URL from additionalImages if available
+                def extract_first_image_url(images):
+                    if isinstance(images, list) and images:
+                        first_image = images[0].get('imageUrl', '')
+                        return first_image
+                    return ''
+
+                df['Image'] = df['additionalImages'].apply(extract_first_image_url)
+
                 # Append to combined DataFrame
                 combined_df = pd.concat([combined_df, df], ignore_index=True)
 
                 self.logger.info(f"eBay data for keyword '{keyword}' added to combined DataFrame")
 
             # Select only the required columns
-            combined_df = combined_df[['Name', 'Price', 'Size', 'Gender', 'URL']]
+            combined_df = combined_df[['Name', 'Price', 'Size', 'Gender', 'URL', 'Image']]
 
             # Write to Excel file
             with pd.ExcelWriter('../resources/outputebay.xlsx', engine='xlsxwriter') as writer:
@@ -151,7 +162,7 @@ class EbayConnection:
             self.logger.info("Combined eBay data written to ../resources/outputebay.xlsx")
 
         except Exception as ex:
-            self.logger.error("Failed writing eBay data to file", ex)
+            self.logger.error("Failed writing eBay data to file", exc_info=True)
 
 if __name__ == "__main__":
     # Setup logging
