@@ -1,3 +1,5 @@
+#this code adds listing date before the name column - 07/10/24 -RF
+
 import http.client
 import json
 import time
@@ -5,6 +7,7 @@ from datetime import datetime
 import re
 from openpyxl import Workbook
 from urllib.parse import quote
+from dateutil.parser import parse
 
 # Function to clean the cell value
 def clean_cell_value(value):
@@ -26,7 +29,6 @@ headers = {
     'x-rapidapi-host': "depop-thrift.p.rapidapi.com"
 }
 
-# Verify that headers are correct (for debugging)
 queries = [
     "Nike Dunk MF DOOM",
     "Nike SB MF DOOM",
@@ -64,7 +66,6 @@ queries = [
     "Nike SB Dunk Dusty Cactus",
     "Pro B Oxide"
 ]
-
 print("Headers type before request:", type(headers))
 
 # Create a new Excel workbook and a single sheet
@@ -74,13 +75,14 @@ ws.title = "Consolidated Results"
 
 # Define the desired columns with the new headers and order
 desired_columns = {
+    'dateCreated': 'Listing Date',
     'slug': 'Name',
     'price': 'Price',
     'sizes': 'Size',
     'url': 'URL'
 }
-# New header order
-header_order = ['Name', 'Price', 'Size', 'Gender', 'URL', 'Images']
+# New header order with Listing Date before Name
+header_order = ['Listing Date', 'Name', 'Price', 'Size', 'Gender', 'URL', 'Images']
 
 # Append the headers to the sheet
 ws.append(header_order)
@@ -132,6 +134,16 @@ for query in queries:
                     elif header == 'Images':
                         images = item.get('images', [])
                         cell_value = images[0] if images else ''  # Get the first image URL or empty string if no images
+                    elif header == 'Listing Date':
+                        date_created = item.get('dateCreated', '')
+                        if date_created:
+                            try:
+                                listing_date = parse(date_created)
+                                cell_value = listing_date.strftime("%m-%d-%Y")
+                            except ValueError:
+                                cell_value = ''
+                        else:
+                            cell_value = ''
                     else:
                         cell_key = list(desired_columns.keys())[list(desired_columns.values()).index(header)]
                         if cell_key == 'price':
