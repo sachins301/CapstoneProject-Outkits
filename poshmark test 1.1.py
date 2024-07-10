@@ -1,3 +1,5 @@
+#07/10/24 RF - added column listing date before the name column 
+
 import http.client
 import json
 import time
@@ -35,9 +37,6 @@ headers = {
     'X-RapidAPI-Host': "poshmark.p.rapidapi.com"
 }
 
-# Verify that headers are correct (for debugging)
-print("Headers type before request:", type(headers))
-
 # List of queries to process
 queries = [
     "Nike Dunk Low 6.0",
@@ -59,7 +58,7 @@ ws = wb.active
 ws.title = "All Queries"
 
 # Define the headers for the columns we are interested in
-headers = ['Name', 'Price', 'Size', 'Gender', 'URL', 'Images']
+headers = ['Listing Date', 'Name', 'Price', 'Size', 'Gender', 'URL', 'Images']
 ws.append(headers)
 
 # Process each query
@@ -86,6 +85,10 @@ for query in queries:
 
     if items:
         for item in items:
+            # Extract listing date and format as MM-DD-YYYY
+            listing_date = item.get('first_available_at', '')
+            formatted_listing_date = pd.to_datetime(listing_date).strftime('%m-%d-%Y') if listing_date else ''
+
             title = item.get('title', '')
             price = extract_number(item.get('price_amount', {}).get('val', ''))
             size_obj = item.get('size_obj', {}).get('display', '')
@@ -104,7 +107,7 @@ for query in queries:
             pictures = item.get('pictures', [])
             first_image_url = pictures[0]['url'] if pictures else ''
 
-            row = [title, price, size, department, url, first_image_url]
+            row = [formatted_listing_date, title, price, size, department, url, first_image_url]
             row = [clean_cell_value(cell) for cell in row]
             ws.append(row)
     else:
