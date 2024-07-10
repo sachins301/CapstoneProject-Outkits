@@ -1,3 +1,4 @@
+#07/10/24 RF - added column before name (listing date) that is blank, because mercari api doesn't provide a listing date or anything similar. 
 #MERCARI - 07/05/24 - RF - code adds first Url in images and adds it to the excel output column named images. 
 
 import http.client
@@ -42,7 +43,7 @@ ws = wb.active
 ws.title = "Search Results"
 
 # Add headers to the worksheet
-response_headers = ['Name (listing title)', 'Price', 'Size', 'Gender', 'URL', 'Images']
+response_headers = ['Listing Date', 'Name (listing title)', 'Price', 'Size', 'Gender', 'URL', 'Images']
 ws.append(response_headers)
 
 # Process each query
@@ -69,7 +70,7 @@ for query in queries:
             url = item.get('url', '')
             photos = item.get('photos', [])
             first_image_url = photos[0].get('imageUrl', '') if photos else ''
-            row = [name, price, size, gender, url, first_image_url]
+            row = ['', name, price, size, gender, url, first_image_url]  # Blank column for listing date
             ws.append(row)
 
 # Save the workbook to a file
