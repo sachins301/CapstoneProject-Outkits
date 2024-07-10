@@ -1,5 +1,5 @@
+#This code adds the listing date column before the name column with dates populate - RF 07/10/24
 #This code adds the first image url from additionalimages to the images column in xlsx. -RF 07/09/24
-
 import base64
 import json
 import logging
@@ -133,6 +133,14 @@ class EbayConnection:
                 item_summaries = json_content['itemSummaries']
                 df = json_normalize(item_summaries)
 
+                # Add Listing Date column
+                if 'itemCreationDate' in item_summaries[0]:
+                    date_created = item_summaries[0]['itemCreationDate']
+                    formatted_date = pd.to_datetime(date_created).strftime('%m-%d-%Y')
+                    df['Listing Date'] = formatted_date
+                else:
+                    df['Listing Date'] = ''
+
                 # Rename columns and add blank columns
                 df.rename(columns={'title': 'Name', 'price.value': 'Price', 'itemWebUrl': 'URL'}, inplace=True)
                 df['Size'] = ''
@@ -153,7 +161,7 @@ class EbayConnection:
                 self.logger.info(f"eBay data for keyword '{keyword}' added to combined DataFrame")
 
             # Select only the required columns
-            combined_df = combined_df[['Name', 'Price', 'Size', 'Gender', 'URL', 'Image']]
+            combined_df = combined_df[['Listing Date', 'Name', 'Price', 'Size', 'Gender', 'URL', 'Image']]
 
             # Write to Excel file
             with pd.ExcelWriter('../resources/outputebay.xlsx', engine='xlsxwriter') as writer:
