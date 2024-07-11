@@ -2,10 +2,10 @@
 import pandas as pd
 
 # Load the data from the uploaded Excel files
-file1 = "Add_path_here/outputposhmark.xlsx" #"Add_path_here" is can be delete and add the path where the file is located
-file2 = "Add_path_here/outputmercari.xlsx"  #"Add_path_here" is can be delete and add the path where the file is located
-file3 = "Add_path_here/outputebay.xlsx"  #"Add_path_here" is can be delete and add the path where the file is located
-file4 = "Add_path_here/outputdepop.xlsx"  #"Add_path_here" is can be delete and add the path where the file is located
+file1 = "Add_path_here/outputposhmark.xlsx" #"Add_path_here" can be delete and add the path where the file is located
+file2 = "Add_path_here/outputmercari.xlsx"  #"Add_path_here" can be delete and add the path where the file is located
+file3 = "Add_path_here/outputebay.xlsx"  #"Add_path_here" can be delete and add the path where the file is located
+file4 = "Add_path_here/outputdepop.xlsx"  #"Add_path_here" can be delete and add the path where the file is located
 
 # Read the Excel files into DataFrames
 df1 = pd.read_excel(file1, sheet_name=None)
