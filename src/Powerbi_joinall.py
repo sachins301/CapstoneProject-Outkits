@@ -1,11 +1,11 @@
-
+#This code combined all the xlsx into one in power bi "Pythin scripts" - 07/10/24 - AR
 import pandas as pd
 
 # Load the data from the uploaded Excel files
-file1 = "E:\IS 6495-001\pythonProject/Carhartt Hooded Jacket Orange.xlsx"
-file2 = "E:\IS 6495-001\pythonProject/Carhartt Hooded Jacket Purple.xlsx"
-file3 = "E:\IS 6495-001\pythonProject/Carhartt Hooded Jacket Red.xlsx"
-file4 = "E:\IS 6495-001\pythonProject/Carhartt Hooded Jacket Teal.xlsx"
+file1 = "Add_path_here/outputposhmark.xlsx" #"Add_path_here" is can be delete and add the path where the file is located
+file2 = "Add_path_here/outputmercari.xlsx"  #"Add_path_here" is can be delete and add the path where the file is located
+file3 = "Add_path_here/outputebay.xlsx"  #"Add_path_here" is can be delete and add the path where the file is located
+file4 = "Add_path_here/outputdepop.xlsx"  #"Add_path_here" is can be delete and add the path where the file is located
 
 # Read the Excel files into DataFrames
 df1 = pd.read_excel(file1, sheet_name=None)
