@@ -115,8 +115,8 @@ class EbayConnection:
         item_summaries = json_content['itemSummaries']
         df = json_normalize(item_summaries)
         try:
-            df.to_csv('../resources/ebaydata.csv', index=False)
-            self.logger.info("Ebay data written to ../resources/ebaydata.csv")
+            df.to_csv('ebaydata.csv', index=False)
+            self.logger.info("Ebay data written to ebaydata.csv")
         except Exception as ex:
             self.logger.error("Failed writing ebay data to file", ex)
 

@@ -101,7 +101,7 @@ class PoshmarkConnection:
             time.sleep(0.5)
 
         # Save the workbook to a file
-        wb.save("../resources/outputposhmark.xlsx")
-        self.logger.info("Search results have been saved to ../resources/outputposhmark.xlsx.")
+        wb.save("outputposhmark.xlsx")
+        self.logger.info("Search results have been saved to outputposhmark.xlsx.")
 
         return None

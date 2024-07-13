@@ -1,5 +1,8 @@
 import http.client
 import json
+import os
+import sys
+
 from openpyxl import Workbook
 from pandas import DataFrame
 
@@ -17,14 +20,46 @@ class MercariConnection:
         }
 
         # Read JSON data from a file
+        # keywords = [
+        #     "Nike Dunk MF DOOM",
+        #     "Nike Dunk SB Stussy",
+        #     "Nike Dunk Pushead",
+        #     "Nike Dunk High SB Khaki Creed",
+        #     "Nike Dunk 6.0 Hemp",
+        #     "Nike Dunk SB Mocha",
+        #     "Nike Dunk SB Bison",
+        #     "Nike Dunk SB Mocha Choc",
+        #     "Nike Dunk SB Medusa",
+        #     "Nike Dunk SB Oompa Loompa",
+        #     "Nike 6.0 NKE Quasar Purple",
+        #     "Nike Dunk SB Crown Royal",
+        #     "Nike Dunk Palm Green",
+        #     "Nike Dunk Low Cargo Khaki",
+        #     "Nike Dunk CL demim",
+        #     "Nike Dunk Low Pro Mushroom",
+        #     "Nike Dunk Low SB Tweed",
+        #     "Nike Dunk Low ACG",
+        #     "Dunk Low Pro Obsidian",
+        #     "Dunk Low Pro Midnight Navy",
+        #     "Nike Dunk Low Pro Mesa",
+        #     "Dunk Low Pro B Olive",
+        #     "Nike SB Dunk Trail End",
+        #     "Nike SB Dunk Dusty Cactus",
+        #     "Pro B Oxide"
+        # ]
         keywords = []
+        self.logger.info(f"Right outside the gates of keywords try")
         try:
-            with open("../config/keywords.json", "r") as file:
+            base_path: str = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+            self.logger.info(f"Reading Keywords from {base_path}\config\keywords.json")
+            with open(base_path+"\config\keywords.json", "r") as file:
                 kwjson = json.load(file)
             # Fetch keywords list
             keywords = kwjson["keywords"]
         except Exception as ex:
             self.logger.error("Failed to read keyword config", ex)
+
+        self.logger.info(f"Keywords: {keywords}")
 
         wb = Workbook()
         wb.remove(wb.active)
@@ -69,7 +104,7 @@ class MercariConnection:
             except Exception as ex:
                 self.logger.error(f"Error in Mercari connections", ex)
 
-        wb.save("../resources/outputmercari.xlsx")
-        self.logger.info("Search results have been saved to ../resources/outputmercari.xlsx.")
+        wb.save("outputmercari.xlsx")
+        self.logger.info("Search results have been saved to outputmercari.xlsx.")
 
         return None

@@ -101,7 +101,7 @@ class DepopConnection:
             time.sleep(1.0)
 
         # Save the workbook to a file
-        wb.save("../resources/outputdepop.xlsx")
-        self.logger.info("Search results have been saved to ../resources/outputdepop.xlsx.")
+        wb.save("outputdepop.xlsx")
+        self.logger.info("Search results have been saved to outputdepop.xlsx.")
 
         return None

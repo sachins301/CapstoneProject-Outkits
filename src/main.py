@@ -1,8 +1,19 @@
+import base64
+import json
+import os
 
-
+import requests
+from datetime import datetime, timedelta
+import http.client
+import json
+import re
+import time
+from urllib.parse import quote
+from openpyxl import Workbook
 import pandas as pd
 from pandas import DataFrame
 import logging
+import sys
 
 from common import commonutil
 from src.depopconnection import DepopConnection
@@ -14,7 +25,7 @@ if __name__ == "__main__":
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)  # Set the logging level
     # Create handlers
-    file_handler = logging.FileHandler('../resources/outkitsapicall.log', mode='w', encoding='utf-8')
+    file_handler = logging.FileHandler('outkitsapicall.log', mode='w', encoding='utf-8')
     # Create formatters and add it to the handlers
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     file_handler.setFormatter(formatter)
@@ -27,12 +38,16 @@ if __name__ == "__main__":
     # Starting ebay connection
     ebayDf: DataFrame = pd.DataFrame()
 
-    try:
-        logger.info("Starting ebay connection")
-        connection = EbayConnection(logger)
-        ebayDf: DataFrame = connection.connect()
-    except Exception as ex:
-        logger.exception("Exception in ebay: %s", ex)
+    logger.info("Current working directory:"+ os.getcwd())
+    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    logger.info("Some weird thing: "+ base_path)
+
+    # try:
+    #     logger.info("Starting ebay connection")
+    #     connection = EbayConnection(logger)
+    #     ebayDf: DataFrame = connection.connect()
+    # except Exception as ex:
+    #     logger.exception("Exception in ebay: %s", ex)
 
     # Mercari Connection
     try:
@@ -42,32 +57,32 @@ if __name__ == "__main__":
     except Exception as ex:
         logger.exception("Exception in Mercari", ex)
 
-    # Depop Connection
-    try:
-        logger.info("Starting Mercari connection")
-        depop_connection = DepopConnection(logger)
-        depop_connection.connect()
-    except Exception as ex:
-        logger.exception("Exception in Depop", ex)
+    # # Depop Connection
+    # try:
+    #     logger.info("Starting Mercari connection")
+    #     depop_connection = DepopConnection(logger)
+    #     depop_connection.connect()
+    # except Exception as ex:
+    #     logger.exception("Exception in Depop", ex)
+    #
+    # # Poshmark Connection
+    # try:
+    #     logger.info("Starting Mercari connection")
+    #     poshmark_connection = PoshmarkConnection(logger)
+    #     poshmark_connection.connect()
+    # except Exception as ex:
+    #     logger.exception("Exception in Poshmark", ex)
+    #
 
-    # Poshmark Connection
-    try:
-        logger.info("Starting Mercari connection")
-        poshmark_connection = PoshmarkConnection(logger)
-        poshmark_connection.connect()
-    except Exception as ex:
-        logger.exception("Exception in Poshmark", ex)
-
-
-    try:
-        attachment_paths = ['../resources/outputmercari.xlsx', '../resources/outputposhmark.xlsx', '../resources/outputdepop.xlsx']
-        commonutil.send_email(
-            subject="Search Results for APIS",
-            body="Please find attached the search results.",
-            to="u1452118@utah.edu",
-            attachment_paths=attachment_paths
-        )
-    except Exception as ex:
-        logger.exception("Failed to send email notification", ex)
-    else:
-        logger.info('Successfully sent the mail')
+    # try:
+    #     attachment_paths = ['../resources/outputmercari.xlsx', '../resources/outputposhmark.xlsx', '../resources/outputdepop.xlsx']
+    #     commonutil.send_email(
+    #         subject="Search Results for APIS",
+    #         body="Please find attached the search results.",
+    #         to="u1452118@utah.edu",
+    #         attachment_paths=attachment_paths
+    #     )
+    # except Exception as ex:
+    #     logger.exception("Failed to send email notification", ex)
+    # else:
+    #     logger.info('Successfully sent the mail')
