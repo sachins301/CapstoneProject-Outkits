@@ -1,4 +1,5 @@
-#this code adds listing date before the name column - 07/10/24 -RF
+# This code changes the filename to outputdepop instead of outputdepop(timestamp) - RF 07/16/24
+
 
 import http.client
 import json
@@ -165,9 +166,7 @@ for query in queries:
     if not items_found:
         print(f"Max retries reached for query: {query}. Moving on to the next keyword.")
 
-timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
-
-# Save the workbook to a file with a timestamp
-filename = f"outputdepop_{timestamp}.xlsx"
+# Save the workbook to a file named 'outputdepop.xlsx'
+filename = "outputdepop.xlsx"
 wb.save(filename)
 print(f"Search results have been saved to {filename}.")
