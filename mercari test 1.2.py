@@ -43,7 +43,7 @@ ws = wb.active
 ws.title = "Search Results"
 
 # Add headers to the worksheet
-response_headers = ['Listing Date', 'Name (listing title)', 'Price', 'Size', 'Gender', 'URL', 'Images']
+response_headers = ['Listing Date', 'Name', 'Price', 'Size', 'Gender', 'URL', 'Images']
 ws.append(response_headers)
 
 # Process each query
