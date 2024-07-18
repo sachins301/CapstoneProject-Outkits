@@ -55,7 +55,7 @@ class PoshmarkConnection:
         ws.title = "All Queries"
 
         # Define the headers for the columns we are interested in
-        headers = ['Listing Date', 'Name', 'Price', 'Size', 'Gender', 'URL', 'Images']
+        headers = ['Listing Date', 'Name', 'Price', 'Size', 'Gender', 'URL', 'Image']
         ws.append(headers)
 
         # Process each query
