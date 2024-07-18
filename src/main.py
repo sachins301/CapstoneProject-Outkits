@@ -48,7 +48,7 @@ if __name__ == "__main__":
 
     # Depop Connection
     try:
-        logger.info("Starting Mercari connection")
+        logger.info("Starting Depop connection")
         depop_connection = DepopConnection(logger)
         depop_connection.connect()
     except Exception as ex:
@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
     # Poshmark Connection
     try:
-        logger.info("Starting Mercari connection")
+        logger.info("Starting Poshmark connection")
         poshmark_connection = PoshmarkConnection(logger)
         poshmark_connection.connect()
     except Exception as ex:
