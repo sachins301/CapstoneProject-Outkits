@@ -8,6 +8,7 @@ import sys
 from src.depopconnection import DepopConnection
 from src.ebayconnection import EbayConnection
 from src.mercariconnection import MercariConnection
+from src.poshmarkconnection import PoshmarkConnection
 
 if __name__ == "__main__":
     logger = logging.getLogger(__name__)
@@ -53,13 +54,13 @@ if __name__ == "__main__":
     except Exception as ex:
         logger.exception("Exception in Depop", ex)
 
-    # # Poshmark Connection
-    # try:
-    #     logger.info("Starting Mercari connection")
-    #     poshmark_connection = PoshmarkConnection(logger)
-    #     poshmark_connection.connect()
-    # except Exception as ex:
-    #     logger.exception("Exception in Poshmark", ex)
+    # Poshmark Connection
+    try:
+        logger.info("Starting Mercari connection")
+        poshmark_connection = PoshmarkConnection(logger)
+        poshmark_connection.connect()
+    except Exception as ex:
+        logger.exception("Exception in Poshmark", ex)
     #
 
     # try:

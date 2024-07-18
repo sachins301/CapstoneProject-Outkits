@@ -4,8 +4,11 @@ import re
 import time
 from urllib.parse import quote
 
+import pandas as pd
 from openpyxl import Workbook
 from pandas import DataFrame
+
+from src import commonutil
 
 
 class PoshmarkConnection:
@@ -37,16 +40,23 @@ class PoshmarkConnection:
         # Read JSON data from a file
         queries = []
         try:
-            with open("../config/keywords.json", "r") as file:
+            keyword_path = commonutil.resource_path("/config/keywords.json")
+            self.logger.info(f"Reading Keywords from {keyword_path}")
+            with open(keyword_path, "r") as file:
                 kwjson = json.load(file)
             # Fetch keywords list
             queries = kwjson["keywords"]
         except Exception as ex:
             self.logger.error("Failed to read keyword config", ex)
 
-        # Create a new Excel workbook
+        # Create a new Excel workbook and a single sheet
         wb = Workbook()
-        wb.remove(wb.active)  # Remove the default sheet
+        ws = wb.active
+        ws.title = "All Queries"
+
+        # Define the headers for the columns we are interested in
+        headers = ['Listing Date', 'Name', 'Price', 'Size', 'Gender', 'URL', 'Images']
+        ws.append(headers)
 
         # Process each query
         for query in queries:
@@ -66,17 +76,16 @@ class PoshmarkConnection:
                     # Decode the JSON response
                     decoded_data = json.loads(data.decode("utf-8"))
 
-                    # Create a new sheet for each query
-                    ws = wb.create_sheet(title=query[:31])  # Excel sheet names are limited to 31 characters
-
                     # Adjust the following key to match the actual structure of the response
                     items = decoded_data.get('data', [])
 
                     if items:
-                        # Define the headers for the columns we are interested in
-                        ws.append(['Name', 'Price', 'Size', 'Gender', 'URL'])
-
                         for item in items:
+                            # Extract listing date and format as MM-DD-YYYY
+                            listing_date = item.get('first_available_at', '')
+                            formatted_listing_date = pd.to_datetime(listing_date).strftime(
+                                '%m-%d-%Y') if listing_date else ''
+
                             title = item.get('title', '')
                             price = self.extract_number(item.get('price_amount', {}).get('val', ''))
                             size_obj = item.get('size_obj', {}).get('display', '')
@@ -91,14 +100,18 @@ class PoshmarkConnection:
                             item_id = item.get('id', '')
                             url = f"https://poshmark.com/listing/{clean_title}-{item_id}"
 
-                            row = [title, price, size, department, url]
+                            # Extract the first image URL from "pictures"
+                            pictures = item.get('pictures', [])
+                            first_image_url = pictures[0]['url'] if pictures else ''
+
+                            row = [formatted_listing_date, title, price, size, department, url, first_image_url]
                             row = [self.clean_cell_value(cell) for cell in row]
                             ws.append(row)
                     else:
                         self.logger.info(f"No items found for query: {query}")
             except Exception as ex:
                 self.logger.error(f"Error in Poshmark connections", ex)
-            time.sleep(0.5)
+            time.sleep(1.0)
 
         # Save the workbook to a file
         wb.save("outputposhmark.xlsx")
