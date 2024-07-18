@@ -64,7 +64,7 @@ class DepopConnection:
         }
 
         # New header order with Listing Date before Name
-        header_order = ['Listing Date', 'Name', 'Price', 'Size', 'Gender', 'URL', 'Images']
+        header_order = ['Listing Date', 'Name', 'Price', 'Size', 'Gender', 'URL', 'Image']
 
         # Append the headers to the sheet
         ws.append(header_order)
