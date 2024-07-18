@@ -1,9 +1,14 @@
 import base64
 import json
 import logging
+
+import pandas as pd
 import requests
 from datetime import datetime, timedelta
 from pandas import json_normalize
+
+from src import commonutil
+
 
 class oAuthToken:
     def __init__(self, error=None, access_token=None, refresh_token=None, refresh_token_expiry=None, token_expiry=None):
@@ -81,20 +86,22 @@ class EbayConnection:
         return token
 
     def connect(self):
-        url = "https://api.ebay.com/buy/browse/v1/item_summary/search?q=Nike%20SB%20MF%20DOOM&limit=10"
+        app_config_path = commonutil.resource_path("/config/ebay-config-sample.json")
+        keywords_path = commonutil.resource_path("/config/keywords.json")
+        # app_config_path = "../config/ebay-config-sample.json"
+        # keywords_path = "../config/keywords.json"
 
-        app_config_path = "../config/ebay-config-sample.json"
         with open(app_config_path, 'r') as f:
-            content = json.loads(f.read())
+            ebay_config = json.loads(f.read())
 
-        client_id = content["api.ebay.com"]['appid']
-        dev_id = content["api.ebay.com"]['devid']
-        client_secret = content["api.ebay.com"]['certid']
-        ru_name = content["api.ebay.com"]['redirecturi']
+        client_id = ebay_config["api.ebay.com"]['appid']
+        dev_id = ebay_config["api.ebay.com"]['devid']
+        client_secret = ebay_config["api.ebay.com"]['certid']
+        ru_name = ebay_config["api.ebay.com"]['redirecturi']
 
         token = self.fetch_token(client_id, client_secret, dev_id, ru_name)
         if token.access_token is None:
-            self.logger.error("Failed to fetch access token")
+            self.logger.error(f"Failed to fetch access token, contact developers and debug ebay connection")
             return
 
         bearer_token = "Bearer " + token.access_token
@@ -102,26 +109,72 @@ class EbayConnection:
             'Authorization': bearer_token
         }
 
-        response = requests.get(url, headers=headers)
-        if response.status_code != 200:
-            self.logger.error("API request failed with status code %s", response.status_code)
-            return
-        self.logger.info("API request successful with status code %s", response.status_code)
-        json_content = response.json()
-        if 'itemSummaries' not in json_content:
-            self.logger.error("Key 'itemSummaries' not found in the JSON data.")
+        with open(keywords_path, 'r') as f:
+            keywords_json = json.loads(f.read())
+
+        keywords = keywords_json.get('keywords', [])
+        if not keywords:
+            self.logger.error("No keywords found in keywords.json")
             return
 
-        item_summaries = json_content['itemSummaries']
-        df = json_normalize(item_summaries)
+        # Combined DataFrame for all keywords
+        combined_df = pd.DataFrame()
+
         try:
-            df.to_csv('ebaydata.csv', index=False)
-            self.logger.info("Ebay data written to ebaydata.csv")
+            for keyword in keywords:
+                url = f"https://api.ebay.com/buy/browse/v1/item_summary/search?q={keyword}&limit=30"
+
+                response = requests.get(url, headers=headers)
+                if response.status_code != 200:
+                    self.logger.error("API request failed with status code %s for keyword '%s'", response.status_code, keyword)
+                    continue
+
+                self.logger.info("API request successful with status code %s for keyword '%s'", response.status_code, keyword)
+                json_content = response.json()
+                if 'itemSummaries' not in json_content:
+                    self.logger.error("Key 'itemSummaries' not found in the JSON data for keyword '%s'", keyword)
+                    continue
+
+                item_summaries = json_content['itemSummaries']
+                df = json_normalize(item_summaries)
+
+                # Add Listing Date column
+                if 'itemCreationDate' in item_summaries[0]:
+                    date_created = item_summaries[0]['itemCreationDate']
+                    formatted_date = pd.to_datetime(date_created).strftime('%m-%d-%Y')
+                    df['Listing Date'] = formatted_date
+                else:
+                    df['Listing Date'] = ''
+
+                # Rename columns and add blank columns
+                df.rename(columns={'title': 'Name', 'price.value': 'Price', 'itemWebUrl': 'URL'}, inplace=True)
+                df['Size'] = ''
+                df['Gender'] = ''
+
+                # Extract the first image URL from additionalImages if available
+                def extract_first_image_url(images):
+                    if isinstance(images, list) and images:
+                        first_image = images[0].get('imageUrl', '')
+                        return first_image
+                    return ''
+
+                df['Image'] = df['additionalImages'].apply(extract_first_image_url)
+
+                # Append to combined DataFrame
+                combined_df = pd.concat([combined_df, df], ignore_index=True)
+
+                self.logger.info(f"eBay data for keyword '{keyword}' added to combined DataFrame")
+
+            # Select only the required columns
+            combined_df = combined_df[['Listing Date', 'Name', 'Price', 'Size', 'Gender', 'URL', 'Image']]
+
+            # Write to Excel file
+            with pd.ExcelWriter('outputebay.xlsx', engine='xlsxwriter') as writer:
+                combined_df.to_excel(writer, index=False, sheet_name='CombinedData')
+
+            self.logger.info("Combined eBay data written to outputebay.xlsx")
+
         except Exception as ex:
-            self.logger.error("Failed writing ebay data to file", ex)
+            self.logger.error("Failed writing eBay data to file", exc_info=True)
 
-        return df
 
-if __name__ == "__main__":
-    connection = EbayConnection()
-    connection.connect()

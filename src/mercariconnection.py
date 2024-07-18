@@ -6,6 +6,8 @@ import sys
 from openpyxl import Workbook
 from pandas import DataFrame
 
+from src import commonutil
+
 
 class MercariConnection:
     def __init__(self, logger):
@@ -50,9 +52,9 @@ class MercariConnection:
         keywords = []
         self.logger.info(f"Right outside the gates of keywords try")
         try:
-            base_path: str = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
-            self.logger.info(f"Reading Keywords from {base_path}\config\keywords.json")
-            with open(base_path+"\config\keywords.json", "r") as file:
+            keyword_path = commonutil.resource_path("/config/keywords.json")
+            self.logger.info(f"Reading Keywords from {keyword_path}")
+            with open(keyword_path, "r") as file:
                 kwjson = json.load(file)
             # Fetch keywords list
             keywords = kwjson["keywords"]
@@ -61,9 +63,16 @@ class MercariConnection:
 
         self.logger.info(f"Keywords: {keywords}")
 
+        # Create a new Excel workbook and a single worksheet
         wb = Workbook()
-        wb.remove(wb.active)
+        ws = wb.active
+        ws.title = "Search Results"
 
+        # Add headers to the worksheet
+        response_headers = ['Listing Date', 'Name (listing title)', 'Price', 'Size', 'Gender', 'URL', 'Images']
+        ws.append(response_headers)
+
+        # Process each query
         for query in keywords:
             formatted_query = query.replace(" ", "%20")
             self.logger.info(f"Requesting data for query: {query}")
@@ -83,8 +92,6 @@ class MercariConnection:
                     ws = wb.create_sheet(title=query[:31])  # Excel sheet names are limited to 31 characters
 
                     if isinstance(decoded_data, list) and decoded_data:
-                        response_headers = ['Name (listing title)', 'Price', 'Size', 'Gender', 'URL']
-                        ws.append(response_headers)
                         for item in decoded_data:
                             name = item.get('name', '')
                             price = item.get('price', '')
@@ -94,16 +101,18 @@ class MercariConnection:
                                     .replace(',', '')
                                     .replace('(', '')
                                     .replace(')', '')
-                                    .replace(" ", '0')
-                                    )
+                                    .replace(" ",'0'))
                             gender = item.get('categoryTitle', '')
                             url = item.get('url', '')
-                            row = [name, price, size, gender, url]
+                            photos = item.get('photos', [])
+                            first_image_url = photos[0].get('imageUrl', '') if photos else ''
+                            row = ['', name, price, size, gender, url, first_image_url]  # Blank column for listing date
                             ws.append(row)
 
             except Exception as ex:
                 self.logger.error(f"Error in Mercari connections", ex)
 
+        # Save the workbook to a file
         wb.save("outputmercari.xlsx")
         self.logger.info("Search results have been saved to outputmercari.xlsx.")
 

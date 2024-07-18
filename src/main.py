@@ -1,25 +1,12 @@
-import base64
-import json
 import os
 
-import requests
-from datetime import datetime, timedelta
-import http.client
-import json
-import re
-import time
-from urllib.parse import quote
-from openpyxl import Workbook
 import pandas as pd
 from pandas import DataFrame
 import logging
 import sys
 
-from common import commonutil
-from src.depopconnection import DepopConnection
 from src.ebayconnection import EbayConnection
 from src.mercariconnection import MercariConnection
-from src.poshmarkconnection import PoshmarkConnection
 
 if __name__ == "__main__":
     logger = logging.getLogger(__name__)
@@ -40,14 +27,14 @@ if __name__ == "__main__":
 
     logger.info("Current working directory:"+ os.getcwd())
     base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
-    logger.info("Some weird thing: "+ base_path)
+    logger.info("Executable internal folder: "+ base_path)
 
-    # try:
-    #     logger.info("Starting ebay connection")
-    #     connection = EbayConnection(logger)
-    #     ebayDf: DataFrame = connection.connect()
-    # except Exception as ex:
-    #     logger.exception("Exception in ebay: %s", ex)
+    try:
+        logger.info("Starting ebay connection")
+        connection = EbayConnection(logger)
+        ebayDf: DataFrame = connection.connect()
+    except Exception as ex:
+        logger.exception("Exception in ebay: %s", ex)
 
     # Mercari Connection
     try:
