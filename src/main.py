@@ -5,6 +5,7 @@ from pandas import DataFrame
 import logging
 import sys
 
+from src.depopconnection import DepopConnection
 from src.ebayconnection import EbayConnection
 from src.mercariconnection import MercariConnection
 
@@ -44,14 +45,14 @@ if __name__ == "__main__":
     except Exception as ex:
         logger.exception("Exception in Mercari", ex)
 
-    # # Depop Connection
-    # try:
-    #     logger.info("Starting Mercari connection")
-    #     depop_connection = DepopConnection(logger)
-    #     depop_connection.connect()
-    # except Exception as ex:
-    #     logger.exception("Exception in Depop", ex)
-    #
+    # Depop Connection
+    try:
+        logger.info("Starting Mercari connection")
+        depop_connection = DepopConnection(logger)
+        depop_connection.connect()
+    except Exception as ex:
+        logger.exception("Exception in Depop", ex)
+
     # # Poshmark Connection
     # try:
     #     logger.info("Starting Mercari connection")
