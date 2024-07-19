@@ -1,3 +1,6 @@
+# AR - Feel free too add the ebay code after mercari code and the outputebay.xlsx file in (attachment_paths) list at the end so it got included. 
+# My computer is not runnign the ebay code only. 
+
 import http.client
 import json
 import time
@@ -275,7 +278,7 @@ wb.save("outputmercari.xlsx")
 print("Search results have been saved to outputmercari.xlsx.")
 
 
-# Function to send email
+# Function to send email - Make sure to have all the xlsx files ready if only use the funtion part. 
 def send_email(subject, body, to, attachment_paths):
     msg = EmailMessage()
     msg['Subject'] = subject
