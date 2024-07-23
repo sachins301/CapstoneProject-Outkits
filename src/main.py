@@ -32,44 +32,43 @@ if __name__ == "__main__":
     base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
     logger.info("Executable internal folder: "+ base_path)
 
-    # try:
-    #     logger.info("Starting ebay connection")
-    #     connection = EbayConnection(logger)
-    #     ebayDf: DataFrame = connection.connect()
-    # except Exception as ex:
-    #     logger.exception("Exception in ebay: %s", ex)
+    try:
+        logger.info("Starting ebay connection")
+        connection = EbayConnection(logger)
+        ebayDf: DataFrame = connection.connect()
+    except Exception as ex:
+        logger.exception("Exception in ebay: %s", ex)
 
     # Mercari Connection
-    # try:
-    #     logger.info("Starting Mercari connection")
-    #     mercari_connection = MercariConnection(logger)
-    #     mercari_connection.connect()
-    # except Exception as ex:
-    #     logger.exception("Exception in Mercari", ex)
+    try:
+        logger.info("Starting Mercari connection")
+        mercari_connection = MercariConnection(logger)
+        mercari_connection.connect()
+    except Exception as ex:
+        logger.exception("Exception in Mercari", ex)
 
     # Depop Connection
-    # try:
-    #     logger.info("Starting Depop connection")
-    #     depop_connection = DepopConnection(logger)
-    #     depop_connection.connect()
-    # except Exception as ex:
-    #     logger.exception("Exception in Depop", ex)
-    #
-    # # Poshmark Connection
-    # try:
-    #     logger.info("Starting Poshmark connection")
-    #     poshmark_connection = PoshmarkConnection(logger)
-    #     poshmark_connection.connect()
-    # except Exception as ex:
-    #     logger.exception("Exception in Poshmark", ex)
-    #
+    try:
+        logger.info("Starting Depop connection")
+        depop_connection = DepopConnection(logger)
+        depop_connection.connect()
+    except Exception as ex:
+        logger.exception("Exception in Depop", ex)
+
+    # Poshmark Connection
+    try:
+        logger.info("Starting Poshmark connection")
+        poshmark_connection = PoshmarkConnection(logger)
+        poshmark_connection.connect()
+    except Exception as ex:
+        logger.exception("Exception in Poshmark", ex)
+
 
     try:
-        attachment_paths = ['outputmercari.xlsx']
+        attachment_paths = ['outputebay.xlsx', 'outputmercari.xlsx', 'outputdepop.xlsx', 'outputposhmark.xlsx']
         commonutil.send_email(
             subject="Search Results for APIS",
             body="Please find attached the search results.",
-            to="u1452118@utah.edu",
             attachment_paths=attachment_paths
         )
     except Exception as ex:

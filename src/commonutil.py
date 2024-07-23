@@ -10,11 +10,27 @@ def resource_path(relative_path):
     return base_path + relative_path
 
 
-def send_email(subject, body, to, attachment_paths):
+import os
+import json
+import smtplib
+from email.message import EmailMessage
+
+
+def send_email(subject, body, attachment_paths):
+    json_path = resource_path("/config/email-config.json")
+    # json_path = "../config/email-config.json"
+    # Read sender and recipient details from JSON file
+    with open(json_path, 'r') as json_file:
+        data = json.load(json_file)
+
+    sender_email = data['sender']['email']
+    email_password = data['sender']['password']
+    recipient_emails = data['recipient']['email_list']
+
     msg = EmailMessage()
     msg['Subject'] = subject
-    msg['From'] = "outkitsteam@gmail.com"
-    msg['To'] = to
+    msg['From'] = sender_email
+    msg['To'] = ", ".join(recipient_emails)
     msg.set_content(body)
 
     # Add the attachments
@@ -27,15 +43,13 @@ def send_email(subject, body, to, attachment_paths):
         else:
             print(f"File {attachment_path} does not exist.")
 
-    email_password = 'okui erov ucsn drev'  # Replace with the generated app-specific password
-
     # Send the email
     try:
         with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
             smtp.ehlo()
             smtp.starttls()
             smtp.ehlo()
-            smtp.login("outkitsteam@gmail.com", email_password)
+            smtp.login(sender_email, email_password)
             smtp.send_message(msg)
         print("Email alert has been sent.")
     except smtplib.SMTPAuthenticationError as e:
