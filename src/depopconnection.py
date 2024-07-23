@@ -78,7 +78,7 @@ class DepopConnection:
             # Initialize variable to track if items were found and retry count
             items_found = False
             retries = 0
-            max_retries = 10
+            max_retries = 3
 
             try:
                 # Retry until items are found or max retries reached
@@ -116,7 +116,7 @@ class DepopConnection:
                             for header in header_order:
                                 if header == 'Gender':
                                     cell_value = ''  # Blank column for Gender
-                                elif header == 'Images':
+                                elif header == 'Image':
                                     images = item.get('images', [])
                                     cell_value = images[
                                         0] if images else ''  # Get the first image URL or empty string if no images
