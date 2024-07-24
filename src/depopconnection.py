@@ -84,7 +84,7 @@ class DepopConnection:
                 # Retry until items are found or max retries reached
                 while not items_found and retries < max_retries:
                     # Make the GET request with the correct headers
-                    conn.request("GET", f"/getSearch?page=1&keyword={keyword_query}&countryCode=us&sortBy=newlyListed",
+                    conn.request("GET", f"/Search?page=1&keyword={keyword_query}&countryCode=us&sortBy=newlyListed",
                                  headers=headers)
                     res = conn.getresponse()
                     data = res.read()
