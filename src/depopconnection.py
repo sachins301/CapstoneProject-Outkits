@@ -53,7 +53,7 @@ class DepopConnection:
 
             try:
                 # Make the GET request with the correct headers
-                conn.request("GET", f"/getSearch?page=100&keyword={keyword_query}&countryCode=us&sortBy=newlyListed",
+                conn.request("GET", f"/search?page=100&keyword={keyword_query}&countryCode=us&sortBy=newlyListed",
                              headers=headers)
                 res = conn.getresponse()
                 data = res.read()
