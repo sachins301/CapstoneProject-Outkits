@@ -39,6 +39,9 @@ class DepopConnection:
         queries = []
         try:
             keyword_path = commonutil.resource_path("/config/keywords.json")
+
+
+            #keyword_path = "../config/keywords.json"
             self.logger.info(f"Reading Keywords from {keyword_path}")
             with open(keyword_path, "r") as file:
                 kwjson = json.load(file)
@@ -85,7 +88,7 @@ class DepopConnection:
                 while not items_found and retries < max_retries:
                     # Make the GET request with the correct headers
                     conn.request("GET", f"/search?page=1&keyword={keyword_query}&countryCode=us&sortBy=newlyListed",
-                                 headers=headers)
+                    headers=headers)
                     res = conn.getresponse()
                     data = res.read()
                     time.sleep(2.0)
@@ -118,8 +121,7 @@ class DepopConnection:
                                     cell_value = ''  # Blank column for Gender
                                 elif header == 'Image':
                                     images = item.get('images', [])
-                                    cell_value = images[
-                                        0] if images else ''  # Get the first image URL or empty string if no images
+                                    cell_value = images[0] if images else ''  #Get the first image URL or empty string if no images
                                 elif header == 'Listing Date':
                                     date_created = item.get('dateCreated', '')
                                     if date_created:
@@ -131,8 +133,7 @@ class DepopConnection:
                                     else:
                                         cell_value = ''
                                 else:
-                                    cell_key = list(desired_columns.keys())[
-                                        list(desired_columns.values()).index(header)]
+                                    cell_key = list(desired_columns.keys())[list(desired_columns.values()).index(header)]
                                     if cell_key == 'price':
                                         price_info = item.get('price', {})
                                         amount = float(price_info.get('amount', 0))
