@@ -2,8 +2,13 @@ import streamlit as st
 import pandas as pd
 
 # Load the Excel file
-file_path = 'outputebay.xlsx'
-df = pd.read_excel(file_path)
+file_paths = ['outputebay.xlsx', 'outputposhmark.xlsx', 'outputmercari.xlsx', 'outputdepop.xlsx']
+
+# Read the Excel files into DataFrames
+dfs = [pd.read_excel(file_path) for file_path in file_paths]
+
+# Combine the DataFrames into a single DataFrame
+df = pd.concat(dfs, ignore_index=True).drop_duplicates(subset=dfs[0].columns.difference(['index']))
 
 if 'Listing Date' in df.columns:
     df['Listing Date'] = pd.to_datetime(df['Listing Date'], errors='coerce')
@@ -87,5 +92,6 @@ for column in df.columns:
             sort_ascending = st.sidebar.checkbox(f'Sort {column} ascending', value=True)
             filtered_df = filtered_df.sort_values(by=column, ascending=sort_ascending)
 
+filtered_df = filtered_df.drop_duplicates(subset=df.columns.difference(['index'])).reset_index(drop=True)
 # Display the dataframe
 st.write(filtered_df.to_html(escape=False), unsafe_allow_html=True)
