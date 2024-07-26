@@ -41,6 +41,7 @@ class PoshmarkConnection:
         queries = []
         try:
             keyword_path = commonutil.resource_path("/config/keywords.json")
+            #keyword_path = "../config/keywords.json"
             self.logger.info(f"Reading Keywords from {keyword_path}")
             with open(keyword_path, "r") as file:
                 kwjson = json.load(file)
