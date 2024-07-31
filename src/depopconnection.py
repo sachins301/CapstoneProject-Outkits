@@ -103,23 +103,25 @@ class DepopConnection:
                         # Adjust the following key to match the actual structure of the response
                         items = decoded_data.get('products', [])
 
-                    # Filter items to include only those with the brand 'Nike' or 'Carhartt'
+                        # Filter items to include only those with the brand 'Nike' or 'Carhartt'
                     selected_items = [item for item in items if
-                                      item.get('brand') and item.get('brand').lower() in ['nike', 'carhartt']]
+                                      item.get('brandName') and item.get('brandName').lower() in ['nike', 'carhartt']]
 
                     if selected_items:
-                        # Assuming each item in 'products' is a dictionary
                         items_found = True
-                        self.logger.info(f"Items have been found for query: {query}")
-
+                        print(f"Items have been found for query: {query}")
                         for item in selected_items:
                             row = []
                             for header in header_order:
                                 if header == 'Gender':
                                     cell_value = ''  # Blank column for Gender
                                 elif header == 'Image':
-                                    images = item.get('images', [])
-                                    cell_value = images[0] if images else ''  #Get the first image URL or empty string if no images
+                                    pictures = item.get('pictures', [])
+                                    cell_value = pictures[0].get(
+                                        '150') if pictures else ''  # Get the first picture URL or empty string if no pictures
+                                elif header == 'URL':
+                                    slug = item.get('slug', '')
+                                    cell_value = f"https://www.depop.com/products/{slug}/" if slug else ''
                                 elif header == 'Listing Date':
                                     date_created = item.get('dateCreated', '')
                                     if date_created:
@@ -131,11 +133,12 @@ class DepopConnection:
                                     else:
                                         cell_value = ''
                                 else:
-                                    cell_key = list(desired_columns.keys())[list(desired_columns.values()).index(header)]
+                                    cell_key = list(desired_columns.keys())[
+                                        list(desired_columns.values()).index(header)]
                                     if cell_key == 'price':
                                         price_info = item.get('price', {})
-                                        amount = float(price_info.get('amount', 0))
-                                        national_shipping = float(price_info.get('nationalShipping', 0))
+                                        amount = float(price_info.get('priceAmount', 0))
+                                        national_shipping = float(price_info.get('nationalShippingCost', 0))
                                         cell_value = amount + national_shipping
                                     else:
                                         cell_value = item.get(cell_key, '')
