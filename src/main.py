@@ -1,6 +1,9 @@
 import os
 
 import pandas as pd
+import streamlit
+import streamlit.web.cli as stcli
+import os, sys
 from pandas import DataFrame
 import logging
 import sys
@@ -75,3 +78,12 @@ if __name__ == "__main__":
         logger.exception("Failed to send email notification", ex)
     else:
         logger.info('Successfully sent the mail')
+
+
+    sys.argv = [
+        "streamlit",
+        "run",
+        commonutil.resource_path("/common/outkitsui.py"),
+        "--global.developmentMode=false",
+    ]
+    sys.exit(stcli.main())
