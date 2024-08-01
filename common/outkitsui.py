@@ -86,11 +86,20 @@ for column in df.columns:
             filtered_df = filtered_df[
                 (filtered_df[column] >= pd.to_datetime(start_date)) & (filtered_df[column] <= pd.to_datetime(end_date))]
 
+        # Add sort options for specific columns
+        if column == "Price":
+            sort_price_option = st.sidebar.radio(f'Sort {column}', ('None', 'Ascending', 'Descending'))
+            if sort_price_option == 'Ascending':
+                filtered_df = filtered_df.sort_values(by=column, ascending=True)
+            elif sort_price_option == 'Descending':
+                filtered_df = filtered_df.sort_values(by=column, ascending=False)
 
-        # Add sort options
-        if column == "Price" or column == "Listing Date":
-            sort_ascending = st.sidebar.checkbox(f'Sort {column} ascending', value=True)
-            filtered_df = filtered_df.sort_values(by=column, ascending=sort_ascending)
+        if column == "Listing Date":
+            sort_date_option = st.sidebar.radio(f'Sort {column}', ('None', 'Ascending', 'Descending'))
+            if sort_date_option == 'Ascending':
+                filtered_df = filtered_df.sort_values(by=column, ascending=True)
+            elif sort_date_option == 'Descending':
+                filtered_df = filtered_df.sort_values(by=column, ascending=False)
 
 filtered_df = filtered_df.drop_duplicates(subset=df.columns.difference(['index'])).reset_index(drop=True)
 # Display the dataframe
