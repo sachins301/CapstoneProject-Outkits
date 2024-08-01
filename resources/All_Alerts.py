@@ -1,5 +1,3 @@
-# AR - Feel free too add the ebay code after mercari code and the outputebay.xlsx file in (attachment_paths) list at the end so it got included. 
-# My computer is not runnnign the ebay only. 
 import http.client
 import json
 import time

@@ -36,6 +36,7 @@ class DepopConnection:
             'x-rapidapi-host': "depop-thrift.p.rapidapi.com"
         }
 
+        # Read JSON data from a file
         queries = []
         try:
             keyword_path = commonutil.resource_path("/config/keywords.json")
