@@ -92,8 +92,6 @@ class DepopConnection:
                     data = res.read()
                     time.sleep(2.0)
 
-                    self.logger.info(f"Error in Depop connections status code: {res.status}")
-
                     # Decode the JSON response
                     decoded_data = json.loads(data.decode("utf-8"))
 
