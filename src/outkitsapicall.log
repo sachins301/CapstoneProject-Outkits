@@ -1,0 +1,20 @@
+2024-08-01 16:32:12,834 - __main__ - INFO - Current working directory:D:\Projects\CapstoneProject-Outkits\src
+2024-08-01 16:32:12,834 - __main__ - INFO - Executable internal folder: D:\Projects\CapstoneProject-Outkits\src
+2024-08-01 16:32:12,834 - __main__ - INFO - Starting ebay connection
+2024-08-01 16:32:12,834 - __main__ - ERROR - Exception in ebay: [Errno 2] No such file or directory: 'D:\\Projects\\CapstoneProject-Outkits\\src/config/ebay-config-sample.json'
+Traceback (most recent call last):
+  File "D:\Projects\CapstoneProject-Outkits\src\main.py", line 39, in <module>
+    ebayDf: DataFrame = connection.connect()
+  File "D:\Projects\CapstoneProject-Outkits\src\ebayconnection.py", line 94, in connect
+    with open(app_config_path, 'r') as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\CapstoneProject-Outkits\\src/config/ebay-config-sample.json'
+2024-08-01 16:32:12,836 - __main__ - INFO - Starting Mercari connection
+2024-08-01 16:32:12,842 - __main__ - INFO - Reading Keywords from D:\Projects\CapstoneProject-Outkits\src/config/keywords.json
+2024-08-01 16:32:12,882 - __main__ - INFO - Search results have been saved to outputmercari.xlsx.
+2024-08-01 16:32:12,883 - __main__ - INFO - Starting Depop connection
+2024-08-01 16:32:12,889 - __main__ - INFO - Reading Keywords from D:\Projects\CapstoneProject-Outkits\src/config/keywords.json
+2024-08-01 16:32:12,890 - __main__ - INFO - Keywords: []
+2024-08-01 16:32:12,897 - __main__ - INFO - Search results have been saved to outputdepop.xlsx.
+2024-08-01 16:32:12,898 - __main__ - INFO - Starting Poshmark connection
+2024-08-01 16:32:12,903 - __main__ - INFO - Reading Keywords from D:\Projects\CapstoneProject-Outkits\src/config/keywords.json
+2024-08-01 16:32:12,912 - __main__ - INFO - Search results have been saved to outputposhmark.xlsx.
