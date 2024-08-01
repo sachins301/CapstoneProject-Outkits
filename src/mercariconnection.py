@@ -1,7 +1,12 @@
 import http.client
 import json
+import os
+import sys
+import logging
 from openpyxl import Workbook
 from pandas import DataFrame
+
+from src import commonutil
 
 
 class MercariConnection:
@@ -19,57 +24,68 @@ class MercariConnection:
         # Read JSON data from a file
         keywords = []
         try:
-            with open("../config/keywords.json", "r") as file:
+            # for executable
+            keyword_path = commonutil.resource_path("/config/keywords.json")
+            # for local machine
+            # keyword_path = "../config/keywords.json"
+            self.logger.info(f"Reading Keywords from {keyword_path}")
+            with open(keyword_path, "r") as file:
                 kwjson = json.load(file)
             # Fetch keywords list
             keywords = kwjson["keywords"]
         except Exception as ex:
             self.logger.error("Failed to read keyword config", ex)
 
-        wb = Workbook()
-        wb.remove(wb.active)
 
+        # Create a new Excel workbook and a single worksheet
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Search Results"
+
+        # Add headers to the worksheet
+        response_headers = ['Listing Date', 'Name', 'Price', 'Size', 'Gender', 'URL', 'Image']
+        ws.append(response_headers)
+
+        # Process each query
         for query in keywords:
             formatted_query = query.replace(" ", "%20")
             self.logger.info(f"Requesting data for query: {query}")
-            try:
-                conn.request("GET", f"/Mercari/Search?page=1&query={formatted_query}", headers=headers)
-                res = conn.getresponse()
-                data = res.read()
 
-                if res.status != 200:
-                    self.logger.info(f"Error in Mercari connections status code: {res.status}")
+            conn.request("GET", f"/Mercari/Search?page=1&query={formatted_query}", headers=headers)
+            res = conn.getresponse()
+            data = res.read()
 
-                else:
-                    # Decode the JSON response
-                    decoded_data = json.loads(data.decode("utf-8"))
+            # Decode the JSON response
+            decoded_data = json.loads(data.decode("utf-8"))
 
-                    # Create a new sheet for each query
-                    ws = wb.create_sheet(title=query[:31])  # Excel sheet names are limited to 31 characters
+            if isinstance(decoded_data, list) and decoded_data:
+                for item in decoded_data:
+                    name = item.get('name', '')
+                    price = item.get('price', '')
+                    size_dict = item.get('itemSize', {})
+                    size = size_dict.get('name', '') if isinstance(size_dict, dict) else ''
+                    size = size.split(' ')[0].replace(',', '').replace('(', '').replace(')', '').replace(" ", '0')
+                    gender = item.get('categoryTitle', '')
+                    url = item.get('url', '')
+                    photos = item.get('photos', [])
+                    first_image_url = photos[0].get('imageUrl', '') if photos else ''
+                    row = ['', name, price, size, gender, url, first_image_url]  # Blank column for listing date
+                    ws.append(row)
 
-                    if isinstance(decoded_data, list) and decoded_data:
-                        response_headers = ['Name (listing title)', 'Price', 'Size', 'Gender', 'URL']
-                        ws.append(response_headers)
-                        for item in decoded_data:
-                            name = item.get('name', '')
-                            price = item.get('price', '')
-                            size_dict = item.get('itemSize', {})
-                            size = size_dict.get('name', '') if isinstance(size_dict, dict) else ''
-                            size = (size.split(' ')[0]
-                                    .replace(',', '')
-                                    .replace('(', '')
-                                    .replace(')', '')
-                                    .replace(" ", '0')
-                                    )
-                            gender = item.get('categoryTitle', '')
-                            url = item.get('url', '')
-                            row = [name, price, size, gender, url]
-                            ws.append(row)
 
-            except Exception as ex:
-                self.logger.error(f"Error in Mercari connections", ex)
-
-        wb.save("../resources/outputmercari.xlsx")
-        self.logger.info("Search results have been saved to ../resources/outputmercari.xlsx.")
+        # Save the workbook to a file
+        wb.save("outputmercari.xlsx")
+        self.logger.info("Search results have been saved to outputmercari.xlsx.")
 
         return None
+
+# # Create a logger
+# logger = logging.getLogger('MercariLogger')
+# logger.setLevel(logging.INFO)
+# logger.addHandler(logging.StreamHandler(sys.stdout))
+#
+# # Execute the connection
+# mercari_conn = MercariConnection(logger)
+# mercari_conn.connect()
+
+
