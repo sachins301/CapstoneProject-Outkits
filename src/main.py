@@ -1,11 +1,14 @@
 import os
+import time
 
 import pandas as pd
 import os, sys
 from pandas import DataFrame
 import logging
 import sys
-
+import streamlit
+import streamlit.web.cli as stcli
+import xlsxwriter
 from src import commonutil
 from src.depopconnection import DepopConnection
 from src.ebayconnection import EbayConnection
@@ -76,3 +79,12 @@ if __name__ == "__main__":
         logger.exception("Failed to send email notification", ex)
     else:
         logger.info('Successfully sent the mail')
+
+    sys.argv = [
+        "streamlit",
+        "run",
+        commonutil.resource_path("/common/outkitsui.py"),
+        "--global.developmentMode=false",
+    ]
+
+    sys.exit(stcli.main())
