@@ -69,7 +69,8 @@ if __name__ == "__main__":
 
 
     try:
-        attachment_paths = ['outputebay.xlsx', 'outputmercari.xlsx', 'outputdepop.xlsx', 'outputposhmark.xlsx']
+        attachment_paths = ['outputebay.xlsx', 'outputmercari.xlsx', 'outputdepop.xlsx', 'outputposhmark.xlsx',
+                            'outputall.xlsx']
         commonutil.send_email(
             subject="Search Results for APIS",
             body="Please find attached the search results.",

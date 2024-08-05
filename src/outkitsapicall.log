@@ -1,0 +1,22 @@
+2024-08-04 14:46:37,718 - __main__ - INFO - Current working directory:/Users/rymac/PycharmProjects/CapstoneProject-Outkits/src
+2024-08-04 14:46:37,718 - __main__ - INFO - Executable internal folder: /Users/rymac/PycharmProjects/CapstoneProject-Outkits/src
+2024-08-04 14:46:37,718 - __main__ - INFO - Starting ebay connection
+2024-08-04 14:46:37,718 - __main__ - ERROR - Exception in ebay: [Errno 2] No such file or directory: '/Users/rymac/PycharmProjects/CapstoneProject-Outkits/src/config/ebay-config-sample.json'
+Traceback (most recent call last):
+  File "/Users/rymac/PycharmProjects/CapstoneProject-Outkits/src/main.py", line 42, in <module>
+    ebayDf: DataFrame = connection.connect()
+                        ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rymac/PycharmProjects/CapstoneProject-Outkits/src/ebayconnection.py", line 94, in connect
+    with open(app_config_path, 'r') as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/rymac/PycharmProjects/CapstoneProject-Outkits/src/config/ebay-config-sample.json'
+2024-08-04 14:46:37,719 - __main__ - INFO - Starting Mercari connection
+2024-08-04 14:46:37,722 - __main__ - INFO - Reading Keywords from /Users/rymac/PycharmProjects/CapstoneProject-Outkits/src/config/keywords.json
+2024-08-04 14:46:37,726 - __main__ - INFO - Search results have been saved to outputmercari.xlsx.
+2024-08-04 14:46:37,726 - __main__ - INFO - Starting Depop connection
+2024-08-04 14:46:37,730 - __main__ - INFO - Reading Keywords from /Users/rymac/PycharmProjects/CapstoneProject-Outkits/src/config/keywords.json
+2024-08-04 14:46:37,730 - __main__ - INFO - Keywords: []
+2024-08-04 14:46:37,733 - __main__ - INFO - Search results have been saved to outputdepop.xlsx.
+2024-08-04 14:46:37,734 - __main__ - INFO - Starting Poshmark connection
+2024-08-04 14:46:37,738 - __main__ - INFO - Reading Keywords from /Users/rymac/PycharmProjects/CapstoneProject-Outkits/src/config/keywords.json
+2024-08-04 14:46:37,740 - __main__ - INFO - Search results have been saved to outputposhmark.xlsx.

@@ -3,13 +3,10 @@ import json
 import re
 import time
 from urllib.parse import quote
-
 from dateutil.parser import parse
 from openpyxl import Workbook
 from pandas import DataFrame
-
 from src import commonutil
-
 
 class DepopConnection:
     def __init__(self, logger):
@@ -40,7 +37,6 @@ class DepopConnection:
         queries = []
         try:
             keyword_path = commonutil.resource_path("/config/keywords.json")
-            # keyword_path = "../config/keywords.json"
             self.logger.info(f"Reading Keywords from {keyword_path}")
             with open(keyword_path, "r") as file:
                 kwjson = json.load(file)
@@ -86,10 +82,11 @@ class DepopConnection:
                 # Retry until items are found or max retries reached
                 while not items_found and retries < max_retries:
                     # Make the GET request with the correct headers
-                    conn.request("GET", f"/search?page=1&keyword={keyword_query}&countryCode=us&sortBy=newlyListed",
-                    headers=headers)
+                    search_url = f"https://www.depop.com/search/?q={keyword_query}&scrollYOffset="
+                    conn.request("GET", f"/searchByURL?url={quote(search_url)}&country=us", headers=headers)
                     res = conn.getresponse()
                     data = res.read()
+
                     time.sleep(2.0)
 
                     # Decode the JSON response
@@ -102,13 +99,12 @@ class DepopConnection:
                         # Adjust the following key to match the actual structure of the response
                         items = decoded_data.get('products', [])
 
-                        # Filter items to include only those with the brand 'Nike' or 'Carhartt'
-                    selected_items = [item for item in items if
-                                      item.get('brandName') and item.get('brandName').lower() in ['nike', 'carhartt']]
+                    # Filter items to include only those with the brand 'Nike' or 'Carhartt'
+                    selected_items = [item for item in items if item.get('brandName') and item.get('brandName').lower() in ['nike', 'carhartt']]
 
                     if selected_items:
                         items_found = True
-                        print(f"Items have been found for query: {query}")
+                        self.logger.info(f"Items have been found for query: {query}")
                         for item in selected_items:
                             row = []
                             for header in header_order:
@@ -116,8 +112,7 @@ class DepopConnection:
                                     cell_value = ''  # Blank column for Gender
                                 elif header == 'Image':
                                     pictures = item.get('pictures', [])
-                                    cell_value = pictures[0].get(
-                                        '150') if pictures else ''  # Get the first picture URL or empty string if no pictures
+                                    cell_value = pictures[0].get('150') if pictures else ''  # Get the first picture URL or empty string if no pictures
                                 elif header == 'URL':
                                     slug = item.get('slug', '')
                                     cell_value = f"https://www.depop.com/products/{slug}/" if slug else ''
@@ -132,12 +127,19 @@ class DepopConnection:
                                     else:
                                         cell_value = ''
                                 else:
-                                    cell_key = list(desired_columns.keys())[
-                                        list(desired_columns.values()).index(header)]
+                                    cell_key = list(desired_columns.keys())[list(desired_columns.values()).index(header)]
                                     if cell_key == 'price':
                                         price_info = item.get('price', {})
-                                        amount = float(price_info.get('priceAmount', 0))
-                                        national_shipping = float(price_info.get('nationalShippingCost', 0))
+                                        try:
+                                            amount = float(price_info.get('priceAmount', 0))
+                                        except ValueError:
+                                            amount = 0  # Default to 0 if conversion fails
+
+                                        try:
+                                            national_shipping = float(price_info.get('nationalShippingCost', 0))
+                                        except ValueError:
+                                            national_shipping = 0  # Default to 0 if conversion fails
+
                                         cell_value = amount + national_shipping
                                     else:
                                         cell_value = item.get(cell_key, '')
@@ -149,14 +151,14 @@ class DepopConnection:
                     else:
                         retries += 1
                         self.logger.info(f"No items found for query: {query}, retrying... (Attempt {retries}/{max_retries})")
+
                 if not items_found:
-                    print(f"Max retries reached for query: {query}. Moving on to the next keyword.")
+                    self.logger.info(f"Max retries reached for query: {query}. Moving on to the next keyword.")
 
             except Exception as ex:
                 self.logger.error(f"Error in Depop connections", ex)
 
-        # Save the workbook to a file
-        wb.save("outputdepop.xlsx")
-        self.logger.info("Search results have been saved to outputdepop.xlsx.")
-
-        return None
+        # Save the workbook to a file named 'outputdepop.xlsx'
+        filename = "outputdepop.xlsx"
+        wb.save(filename)
+        self.logger.info(f"Search results have been saved to {filename}.")
