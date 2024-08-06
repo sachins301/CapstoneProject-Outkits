@@ -41,7 +41,7 @@ class PoshmarkConnection:
         queries = []
         try:
             keyword_path = commonutil.resource_path("/config/keywords.json")
-            #keyword_path = "../config/keywords.json"
+            # keyword_path = "../config/keywords.json"
             self.logger.info(f"Reading Keywords from {keyword_path}")
             with open(keyword_path, "r") as file:
                 kwjson = json.load(file)
@@ -59,6 +59,9 @@ class PoshmarkConnection:
         dataframe_headers = ['Listing Date', 'Name', 'Price', 'Size', 'Gender', 'URL', 'Image']
         ws.append(dataframe_headers)
 
+        # Keywords to filter items
+        filter_keywords = {'nike', 'carhartt'}
+
         # Process each query
         for query in queries:
             formatted_query = query.replace(" ", "%20")
@@ -73,7 +76,6 @@ class PoshmarkConnection:
                 if res.status != 200:
                     self.logger.info(f"Error in Poshmark connections status code: {res.status}")
                 else:
-
                     # Decode the JSON response
                     decoded_data = json.loads(data.decode("utf-8"))
 
@@ -82,32 +84,38 @@ class PoshmarkConnection:
 
                     if items:
                         for item in items:
-                            # Extract listing date and format as MM-DD-YYYY
-                            listing_date = item.get('first_available_at', '')
-                            formatted_listing_date = pd.to_datetime(listing_date).strftime(
-                                '%m-%d-%Y') if listing_date else ''
+                            title = item.get('title', '').lower()
+                            # Check if the title contains any of the filter keywords
+                            if any(keyword in title for keyword in filter_keywords):
+                                self.logger.info(f"Including item with title: {title}")
 
-                            title = item.get('title', '')
-                            price = self.extract_number(item.get('price_amount', {}).get('val', ''))
-                            size_obj = item.get('size_obj', {}).get('display', '')
+                                # Extract listing date and format as MM-DD-YYYY
+                                listing_date = item.get('first_available_at', '')
+                                formatted_listing_date = pd.to_datetime(listing_date).strftime(
+                                    '%m-%d-%Y') if listing_date else ''
 
-                            # Handle cases where size_obj might be an empty dictionary or None
-                            size = size_obj if size_obj else ''
+                                price = self.extract_number(item.get('price_amount', {}).get('val', ''))
+                                size_obj = item.get('size_obj', {}).get('display', '')
 
-                            department = item.get('department', {}).get('display', '')
+                                # Handle cases where size_obj might be an empty dictionary or None
+                                size = size_obj if size_obj else ''
 
-                            # Construct the URL
-                            clean_title = title.replace(' ', '-').replace('/', '-')
-                            item_id = item.get('id', '')
-                            url = f"https://poshmark.com/listing/{clean_title}-{item_id}"
+                                department = item.get('department', {}).get('display', '')
 
-                            # Extract the first image URL from "pictures"
-                            pictures = item.get('pictures', [])
-                            first_image_url = pictures[0]['url'] if pictures else ''
+                                # Construct the URL
+                                clean_title = title.replace(' ', '-').replace('/', '-')
+                                item_id = item.get('id', '')
+                                url = f"https://poshmark.com/listing/{clean_title}-{item_id}"
 
-                            row = [formatted_listing_date, title, price, size, department, url, first_image_url]
-                            row = [self.clean_cell_value(cell) for cell in row]
-                            ws.append(row)
+                                # Extract the first image URL from "pictures"
+                                pictures = item.get('pictures', [])
+                                first_image_url = pictures[0]['url'] if pictures else ''
+
+                                row = [formatted_listing_date, title, price, size, department, url, first_image_url]
+                                row = [self.clean_cell_value(cell) for cell in row]
+                                ws.append(row)
+                            else:
+                                self.logger.info(f"Excluding item with title: {title}")
                     else:
                         self.logger.info(f"No items found for query: {query}")
             except Exception as ex:
